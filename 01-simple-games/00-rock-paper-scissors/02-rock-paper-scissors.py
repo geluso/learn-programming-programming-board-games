@@ -30,7 +30,8 @@ def computer_choice(choices):
 
 # prompt for user input and print an empty line to add spacing
 def player_choice():
-  print("rock, paper, or scissors?")
+  print()
+  print("rock, paper, or scissors? (or 'exit' to quit)")
   choice = input()
   print()
   return choice
@@ -39,6 +40,9 @@ def play_round():
   choices = ["rock", "paper", "scissors"]
   computer = computer_choice(choices)
   player = player_choice()
+
+  if player == "exit":
+    return "exit"
 
   if player not in choices:
     print("invalid input!")
@@ -51,11 +55,32 @@ def play_round():
 
   if player == computer:
     print("tie")
+    return "tie"
   else:
     winner = determine_winner(computer, player)
     print(winner, "wins")
+    return winner
 
 def main():
-  play_round()
+  player_score = 0
+  computer_score = 0
+
+  is_playing = True
+  while is_playing:
+    result = play_round()
+
+    # check for quit
+    if result == "exit":
+      is_playing = False
+
+    # increment appropriate scores
+    if result == "player":
+      player_score += 1
+    elif result == "computer":
+      computer_score += 1
+
+  print()
+  print("  player score:", player_score)
+  print("computer score:", computer_score)
  
 main()
