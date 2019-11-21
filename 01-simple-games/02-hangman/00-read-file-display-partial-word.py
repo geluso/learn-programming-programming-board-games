@@ -1,3 +1,5 @@
+# credit to this repo for the plain text file list of words
+# https://raw.githubusercontent.com/dwyl/english-words/master/words.txt
 import random
 
 
