@@ -15,9 +15,18 @@
   * Guess My Number (while loops, random numbers)
   * Hangman (arrays, for lopos, ASCII art, command line applications)
   * Fallout Hacking mini-game
+* Card Games
+  * Mechanics
+    * Representing a deck of cards
+    * Shuffling
+  * Blackjack
+  * Bullshit
+  * Poker
+  * Hearts
+  * Durak
+* Grid Games
   * Tic-Tac-Toe (2d arrays, redundancy, helper functions)
   * Connect Four
-* Grid Games
   * Checkers
   * Chess
   * Othello
@@ -33,15 +42,6 @@
     * Seperating data from code
     * Categorizing data
     * Codifying data
-* Card Games
-  * Mechanics
-    * Representing a deck of cards
-    * Shuffling
-  * Blackjack
-  * Bullshit
-  * Poker
-  * Hearts
-  * Durak
 * Data Structures
   * The Eeney-Meeney-Miney-Josephus Problem (linked lists)
   * Towers of Hanoi (stacks)
