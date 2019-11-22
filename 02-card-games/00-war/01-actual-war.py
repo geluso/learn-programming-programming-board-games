@@ -32,14 +32,30 @@ class Player:
         self.discard = []
 
 
+    def all_faces(self):
+
+        self.hand.reverse()
+        self.discard.reverse()
+
+        all_cards = []
+        all_cards.extend(self.hand)
+        all_cards.extend(self.discard)
+
+        self.hand.reverse()
+        self.discard.reverse()
+
+        return map(lambda card: str(card.face), all_cards)
+
+
 class Card:
     def __init__(self, face, suit):
         self.face = face
         self.suit = suit
 
     def __str__(self):
-        template = "%s of %s"
-        return template % (self.face, self.suit)
+        # template = "%s of %s"
+        # return template % (self.face, self.suit)
+        return str(self.face)
 
     def __repr__(self):
         return self.__str__()
@@ -106,10 +122,10 @@ def battle(player1, player2, card1, card2, pile=[]):
     print("player2:", card2)
 
     if card1 > card2:
-        print("player1 takes")
+        print("player1 takes", pile)
         winner = player1
     elif card1 < card2:
-        print("player2 takes")
+        print("player2 takes", pile)
         winner = player2
     else:
         print("tie!")
@@ -154,15 +170,25 @@ def display_players_cards(turn, player1, player2):
     print(f"player1 cards {p1_total:02}:", p1_total * "C")
     print(f"player2 cards {p2_total:02}:", p2_total * "C")
 
+def display_players_cards_face_up(turn, player1, player2):
+    print()
+
+    p1_total = player1.total_cards()
+    p2_total = player2.total_cards()
+
+    print("Turn:", turn)
+    print(f"player1 cards {p1_total:02}:", "".join(player1.all_faces()))
+    print(f"player2 cards {p2_total:02}:", "".join(player2.all_faces()))
+
 
 def war(player1, player2):
     turn = 0
-    display_players_cards(turn, player1, player2)
+    display_players_cards_face_up(turn, player1, player2)
 
     while not player1.is_empty() and not player2.is_empty():
         turn += 1
 
-        display_players_cards(turn, player1, player2)
+        display_players_cards_face_up(turn, player1, player2)
 
         card1 = player1.draw()
         card2 = player2.draw()
