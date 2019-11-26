@@ -1,29 +1,31 @@
 * Introduction
-  * This book is written for non-pgrammers, begginer, intermediate and advanced
+  * This book is written for non-programmers, beginner, intermediate and advanced
     programmers.
   * For non-programmers it offers a look at the structure of board games and
     how their structure and mechanisms can be translated into programs.
   * For beginner programmers it offers an introduction to programming paired
     with practical projects.
   * For intermediate programmers it offers an introduction to common data
-    structures and algorithms pared with practical projects.
+    structures and algorithms paired with practical projects.
   * For advanced programmers it offers a survey of how to approach different
     complex programming challenges and outlines common patterns, problems and
     techniques.
 * Simple Games
-  * Rock Paper Scissors (variables, user input, if statements, functions)
   * Guess My Number (while loops, random numbers)
+  * Rock Paper Scissors (variables, user input, if statements, functions)
   * Hangman (arrays, for lopos, ASCII art, command line applications)
   * Fallout Hacking mini-game
 * Card Games
   * Mechanics
     * Representing a deck of cards
     * Shuffling
+  * War
   * Blackjack
   * Bullshit
   * Poker
   * Hearts
   * Durak
+  * Slapjack (asynchronicity)
 * Grid Games
   * Tic-Tac-Toe (2d arrays, redundancy, helper functions)
   * Connect Four

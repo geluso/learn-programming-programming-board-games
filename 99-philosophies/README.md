@@ -116,3 +116,15 @@ print("one gallon in canada USD", canadian_gas_per_gallon_in_usd)
 print("one gallon in america CAD", american_gas_per_gallon_in_cad)
 print("one gallon in america USD", american_gas_per_gallon_in_usd)
 ```
+
+## Zero to One, One to Two, Two to Many
+
+* Going from zero to one is hard
+* Going from one to two is hard
+* Going from two to three is hard
+* Going from three to fourth, and on, is easy
+
+There's a significant amount of work to go from zero to one, building something
+for the first time. 
+
+
