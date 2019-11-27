@@ -98,7 +98,7 @@ d = .264172
 z = a / c / d
 ```
 
-```
+```python
 cad_per_liter = 1.39
 dollar_per_gallon = 3.50
 cad_per_dollar = .75
@@ -127,4 +127,41 @@ print("one gallon in america USD", american_gas_per_gallon_in_usd)
 There's a significant amount of work to go from zero to one, building something
 for the first time. 
 
+## Serialization: Saving the State of the Game
+At some point you'll want to save the state of your game. Maybe you'll want to
+save their current game to file so they can play later. Maybe you'll want to
+save the state of the game so you can make an AI to explore making different
+moves. Maybe you'll want to save the current state of the game across a few
+turns to prevent players from getting stuck in a loop (like "Ko" in Go).
 
+[Ko](https://en.wikipedia.org/wiki/Ko_fight)
+
+Serialization is the process of taking the state of the game and writing it
+down in a way that you can load the game back exactly as it was.
+
+If you serialized a game of Tic Tac Toe you should write down what the board
+looks like, and write down which player should take the next turn.
+
+Serializing a game of poker is more complex. Here's pieces of state you'll want
+to save:
+
+* The cards in each players's hand
+* The current amount of money each player has
+* Write down who's turn it is
+
+Saving the state of other parts of the game can become even more complex. Do
+you want to be able to save the game in the middle of a hand, in the middle of
+a betting round, in the middle of while players can still discard cards?
+
+Should the state of the deck and discarded cards be saved, or should you
+reshuffle the deck when the game is loaded? If the deck is reshuffled each
+time the game is loaded players can cheat the system by reloading the game
+over and over until they draw cards they want.
+
+* Write down which players have discarded and redrawn cards.
+* Write down where you are in the betting process.
+* Write down what sort of side pots you've established, if any.
+
+Thinking about how you will serialize and load the game back from serialized
+state can help you think about how you should structure the internal state of
+the game initially.
