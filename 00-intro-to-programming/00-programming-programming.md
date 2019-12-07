@@ -13,7 +13,7 @@ we'll be building are broken into these broad categories:
   Connect Four
 * **Card Games:** War, Blackjack, Thirteen, Poker, Hearts, Cribbage
 * **Grid Games:** Othello, Checkers, Chess, Go, Chinese Checkers
-* **Classic Games:** Monopoloy, Chutes and Ladders, Risk, The Game of Life
+* **Classic Games:** Monopoly, Chutes and Ladders, Risk, The Game of Life
 * **Modern Games:** Settlers of Catan, Carcassonne, Dominion, Powerboats
 
 I've arranged the games to coincide with a good order of programming concepts.
@@ -97,7 +97,7 @@ main()
   * `closest` is a variable that get a value that **returns** from the
     `findClosestPlace` function.
 * We're using an array `[]` to store items in a list.
-* We're eusing **objects** `{}` to build a single thing that holds three
+* We're using **objects** `{}` to build a single thing that holds three
   properties and their values: `name`, `lat` and `long`. It's nice to group
   these properties and values together because they represent the same one
   thing.
@@ -117,7 +117,7 @@ main()
 One thing worth mentioning right off the bat: it's a common misconception that
 programming requires lots of math. Don't be discouraged! This is not true!
 Programming is more about logic than math. Especially in my own personally
-programming I rarely use anything more complicated than that distance forumula.
+programming I rarely use anything more complicated than that distance formula.
 
 Now that you've seen one program in whole, let's continue talking more about
 each individual parts.
@@ -188,9 +188,11 @@ We'll also introduce the idea of Classes, and object-oriented program to build
 pieces of our program to represent Cards, Hands, Decks, and Players.
 
 Finally, building card games would not be complete without writing an algorithm
-to shuffle our cards. We'll write some naiive shuffling algorithms first then
+to shuffle our cards. We'll write some naive shuffling algorithms first then
 refer to an awesome Mike Bostock visualization and see why the Fischer-Yates
 shuffling algorithm is truly the best.
+
+* [Mike Bostock Visualizing Fisher-Yates](https://bost.ocks.org/mike/shuffle/)
 
 ### War
 Start learning how to build a class to represent Cards and Decks. Build
@@ -210,7 +212,7 @@ Write a program playing the classic game of Black Jack! Deal with the ambiguity
 of whether an Ace is worth 1 or 11. Spooky!!
 
 Extend the program to include multiple players and build variations on AIs that
-play smart, dumb, chaotic and varisous degrees of risky.
+play smart, dumb, chaotic and various degrees of risky.
 
 ### Solitaire
 Finally, a rest from multiplayer games. Write your own version of solitaire and
@@ -223,7 +225,7 @@ possibility, and otherwise flick through drawing cards in the deck.
 
 ### Poker
 Build a single-player version of handheld poker. Use the Dictionary/Map data
-structure to write algorithsm that organize and detect poker hands.
+structure to write algorithms that organize and detect poker hands.
 
 Extend the program to include multiple players, managing bets and splitting
 pots.
