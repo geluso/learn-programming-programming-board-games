@@ -11,6 +11,11 @@ The idea of this book is to take what you already know about board games
 and see how to convert your understanding of how those games work into
 interactive programs.
 
+The book is written for people reading with any level of programming
+experience. If you have zero, this book starts from there! If you have some
+programming experience, pick up where you feel comfortable and flip back if you
+feel like you missed something.
+
 We'll start introducing fundamental programming concepts and building simple
 games. Then we'll learn more concepts and build more complex games. The games
 we'll be building are broken into these broad categories:
