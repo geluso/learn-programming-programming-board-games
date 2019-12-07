@@ -1,4 +1,10 @@
-# Learn Programming Programming
+# Learn Programming Programming Board Games
+
+[http://learnprogrammingprogrammingboardgames.com](http://learnprogrammingprogrammingboardgames.com/)
+
+<img width="200px" src="./cover.png" alt="Learn Programming Programming Board Games book cover" />
+
+## Learn Programming Programming
 Welcome to Learn Programming Programming Board Games.
 
 The idea of this book is to take what you already know about board games
