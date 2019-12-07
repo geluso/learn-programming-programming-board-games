@@ -165,3 +165,8 @@ over and over until they draw cards they want.
 Thinking about how you will serialize and load the game back from serialized
 state can help you think about how you should structure the internal state of
 the game initially.
+
+## Shallow Copy vs Deep Copy
+
+
+## JavaScript const .push array
