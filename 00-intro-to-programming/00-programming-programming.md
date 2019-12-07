@@ -13,8 +13,9 @@ interactive programs.
 
 The book is written for people reading with any level of programming
 experience. If you have zero, this book starts from there! If you have some
-programming experience, pick up where you feel comfortable and flip back if you
-feel like you missed something.
+programming experience, pick up where you feel comfortable. Flip back if you
+feel like you missed something. Flip around if you're just interested in
+specific stuff.
 
 We'll start introducing fundamental programming concepts and building simple
 games. Then we'll learn more concepts and build more complex games. The games
