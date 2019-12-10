@@ -170,3 +170,6 @@ the game initially.
 
 
 ## JavaScript const .push array
+
+
+## I Won't Say There's A Right Way, but I Will Tell You Different Ramifications
