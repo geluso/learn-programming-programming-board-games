@@ -162,7 +162,7 @@ while (turn < 42) {
 ```
 
 **Takeaway:** You can always use an integer, an array, and the modulus
-operator to proceed through players's turns in an orderly fashion until a
+operator to proceed through player's turns in an orderly fashion until a
 game is over. When you take the turn number "modulo" the length of the array
 you end up with a number sequence that cycles through indexes of the array.
 
@@ -242,7 +242,7 @@ When does Tic Tac Toe end?
   else to play.
 
 I apologize for having explained end-game conditions for Tic Tac Toe. If
-you've serisously never played Tic Tac Toe, welcome to the game!
+you've seriously never played Tic Tac Toe, welcome to the game!
 
 The actual annoying part about checking for three-in-a-row is writing the
 code to do it. Let's use what we know about for-loops and arrays to write
@@ -354,8 +354,8 @@ Read more about [One-Liners Suck]()
 And another one thing!! Tiny variable names are absolutely terrible. Imagine
 searching through a code-base to see everywhere a variable, or a function is
 called. If you named something `a` you're going to get a lot of useless
-search results like "banana," "banana," "banana," "bandana," "bandana,"
-"bandana," "let a = 78", "search," and so on.
+search results like "banana," "banana," "banana," "bandanna," "bandanna,"
+"bandanna," "let a = 78", "search," and so on.
 
 ### A Simpler Solution
 
@@ -390,13 +390,13 @@ return false
 
 ## A More Complex Simple Solution
 OK, there's one more variation on this game that I personally like. Instead
-of using the two for loops and checking for the diaganols all seperately
+of using the two for loops and checking for the diagonals all separately
 we'll store all our line information the same way. The two for loops for the
 horizontal lines and the vertical lines are not that big of a win.
 
 Hard-code an array listing each of the potential three-in-a-row lines with
 the row/column information for each space in the line. Tic-Tac-Toe is a small
-enough game that I think it's ok to get away with this.
+enough game that I think it's OK to get away with this.
 
 We'll look at more complicated grid-assessments when we look at Connect Four in
 the next game.
