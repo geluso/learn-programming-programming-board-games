@@ -1,0 +1,1 @@
+Why do array indexes increase as the y-coordinate goes down?
