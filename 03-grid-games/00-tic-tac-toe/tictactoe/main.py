@@ -26,7 +26,9 @@ def letter_to_coordinate(letter):
         "a": (1, 0), "s": (1, 1), "d": (1, 2),
         "z": (2, 0), "x": (2, 1), "c": (2, 2),
     }
-    return mapping[letter]
+    if letter in mapping:
+        return mapping[letter]
+    return None
 
 
 def prompt_player(game):
@@ -53,8 +55,12 @@ def main():
 
     while not game.is_game_over:
         display_board(game)
-        row, col = prompt_player(game)
-        game.make_move(row, col)
+        choice = prompt_player(game)
+        if choice is None:
+            print("Invalid choice! Enter a letter.")
+        else:
+            row, col = choice
+            game.make_move(row, col)
 
     display_winner(game)
 
