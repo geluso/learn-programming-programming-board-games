@@ -1,18 +1,18 @@
 # Tic Tac Toe
 Write a program that allows two players to play a game of Tic Tac Toe.
 
-Here's what we'll need for the program:
+Here's everything we'll need to do for this program:
 
-* A way to represent the board
-* A way to display the board
+* Represent the board
+* Display the board
 * Keep track of who's turn it is
 * Allow players to make moves
-* Prevent players from making impossible moves
-* Detect if a player wins
+* Prevent players from making impossible/illegal moves
+* Detect when the game has ended
 
 Most of these items will be accomplished without much trouble. Our biggest
-challenge will be writing some code to detect when the game is won (or over).
-Let's build up the game then see what it takes to detect end-game conditions.
+challenge will be writing code to detect when the game has ended. Let's build
+up the game then see what it takes to detect end-game conditions.
 
 ## Two-Dimensional Array Coordinates
 Let's start with the board representation. A two-dimensional array is a great
@@ -32,11 +32,11 @@ We're saving the entire two-dimensional grid in to a variable called `board`.
 The board has three rows going from top to bottom, and three columns going
 from left to right.
 
-If we want to access the top-left corner of the board we would access
-`board[0][0]` because it's in the first row, in the first column. Remember
-that the grid is an array of arrays. That is to say, the `board` variable
-itself refers to one array. That array contains three things. Each of those
-things is an array itself. Each of the inner arrays has three empty spots.
+To access the top-left corner of the board we access `board[0][0]`. It's in
+the first row, in the first column. The grid is an array of arrays. That is
+to say, the `board` variable itself refers to one array. That array contains
+three things. Each of those things is an array itself. Each of the inner
+arrays has three empty spots.
 
 * The top left corner is at index `board[0][0]`
 * The middle spot is at index `board[1][1]`
@@ -46,18 +46,17 @@ things is an array itself. Each of the inner arrays has three empty spots.
 
 If you come from a background dealing with (x,y) coordinates with lines and
 graphs like in a math class you might notice something odd here. In math
-classes when we plot lines we usually draw a graph with the origin `(0,0)` in
-the bottom left, and two: one for `x` extending to the right, and one for `y`
-extending up.
+classes we draw a graph with the origin `(0,0)` in the bottom left corner.
+The graph has two axes: one for `x` extending to the right, and one for `y`
+extending up. In a math graph y values start at zero at the bottom and
+increase as they go up. In our Tic Tac Toe grid our "y" row indexes go up
+in the opposite direction. Our vertical row coordinates start at zero at the
+top of the grid, and they increase as they go toward the bottom.
 
-If we plotted each `board[row][column]` index as points on a graph we would
-see something different than we're used to seeing in math. In math graphs the
-`y` coordinates start at zero in the bottom left and their values increase as
-they go up. The way we access our array the row `"y"` coordinates start at
-`0` at the top and they increase as they go down. This is a common thing in
-computer graphics. Often in computer graphics the top of the screen is where
-the zero value for y-coordinates start, and the y-coordinates increase as you
-move from the top of the screen toward the bottom.
+Often in computer graphics the top of the screen is where y-coordinates start.
+They start at the top as zero and increase as they move down the screen. Think
+of it like the way you read a book. You start at the top left corner of a page
+and read left-to-right, then top-to-bottom.
 
 Since I'm personally used to y-coordinates increasing as they go up I strive
 to refer to array indexes with the words "row" and "column," especially in
@@ -65,9 +64,15 @@ strictly grid-like structures. It makes it easier for me to reason about
 where things are located.
 
 ## Game Engine
-Here's a simplified version of how the main program will use this class.
-Notice how the main program primarily uses the methods `isGameOver`, and
-`makeMove`.
+Now that we've determined how to represent the state of the board we can
+think about what sort of interactions we need to have with the game. Let's
+make a class that represents a game of Tic Tac Toe. The class needs methods
+to determine if the game is over, allow players to make moves, and keep track
+of who wins at the end of the game.
+
+Here's a simplified version of how the main program will use this class. The
+most important methods here are `isGameOver`, and `makeMove`. The class will
+have more methods used by itself internally.
 
 ```js
 game = new TicTacToeGame()
@@ -79,10 +84,10 @@ while (!game.isGameOver()) {
 displayWinner(game)
 ```
 
-Some complexity of this program has been abstracted away with the methods
-display methods `displayBoard` and `displayWinner`. You can assume those
-methods would interact with more `TicTacToeGame` methods like
-`getCurrentPlayer()` and `getWinner()`.
+Most of the complexity of this main program has been abstracted away with the
+methods `promptPlayer`, `displayBoard` and `displayWinner`. You can assume
+those methods access properties on the `TicTacToeGame` class, and perform
+sufficient input and output.
 
 Here's an outline of the whole `TicTacToeGame` class:
 
@@ -109,43 +114,58 @@ class TicTacToeGame {
   isGameOver() {}
   getWinner() {}
 
-  isValidMovie(row, col) {}
+  isValidMove(row, col) {}
   checkGameOver() {}
 }
 ```
 
-It has some state to keep track of if the game is over and who won. It has a
-variable `turn` to keep track of what turn it is. Knowing what number turn it
-is will help us determine which player is making a move. The class will use
-the `turn` number along with the `players` array with `"X"` and `"O"`
-strings to keep track of the players.
+The class has state for if the game is over and who won. It has an integer
+variable `turn` to count what turn number it is. It will use the `turn`
+number to determine which player's turn it is. The `players` array stores the
+two players in the game, represented as the strings `"X"` and `"O"`.
 
-The class has a reference to the two-dimensional array representing the board
-and it has methods to manipulate all of these things together.
+The class has a `board` property referring to the 3x3 two-dimensional array,
+and it has methods to manipulate everything when moves are made.
 
-Notice that the class has some methods that we'll use with from outside the
-class, and two methods that will only be used by the class internally. The
-idea here is that our main program doesn't need access to every method in the
-class. It will call methods like `isGameOver()` to see if the program should
-continue running. It won't need to call methods like `isValidMove()` because 
-`makeMove()` will call that method internally itself. Programming languages
-often call the different between externally-used and internally-used methods
-`public` and `private` methods.
+Notice there's more methods in the class than there are used in the miniature
+main concept program above. Specifically, the `isValidMove` and
+`checkGameOver` will never be called from the main program. These are
+internal methods that will only be called from other methods inside the
+class. These will be called from inside `makeMove()` which is called from the
+main program.
+
+Programming languages often call the different between externally-used and
+internally-used methods `public` and `private` methods.
 
 Read more about [encapsulation]().
 
-## Taking Turns
-Here's a very common pattern while programming board games: having players
-take turns! Here's the general pattern we'll follow:
+## Making Moves and Taking Turns
+Let's implement `makeMove(row, col)`. This method accepts a position on the
+board and marks the spot with an `"X"` or an `"O"`. It depends on knowing
+which player is currently making the move. It should only count the move if
+the player has chosen a legitimate row and column on the board, and it should
+prevent the player from overwriting a move already made at a position. If the
+move is legitimate then the board is marked, and the next time the method is
+called it is the next player's turn.
+
+In summary:
 
 * Have the current player attempt to make a move
 * Double-check to make sure the move is legitimate
 * Manipulate the state of the game as per the move
 * Advance the state of the game to the next player
 
-Keeping track of the current player is conveniently tracked using the array
-of players, counting how many turns have occurred, and using the modulus
-operator. Check out this little example first:
+How do we keep track of what player's turn it is? Use the `turn` number to
+constantly cycle through the array of `players` whenever a legitimate turn is
+complete. There's a nice pattern we can use with the modulus operator to
+achieve this cleanly.
+
+If we always increment the `turn` number and take the modulo of it and the
+length of the `players` array then we will get a number that cycles through
+each of the array indexes, starting at zero, going to the end and repeating
+over and over.
+
+Check out this example:
 
 ```js
 // referring to a Star Trek TNG poker scene
@@ -162,15 +182,14 @@ while (turn < 42) {
 ```
 
 **Takeaway:** You can always use an integer, an array, and the modulus
-operator to proceed through player's turns in an orderly fashion until a
-game is over. When you take the turn number "modulo" the length of the array
-you end up with a number sequence that cycles through indexes of the array.
+operator to proceed through player turns in an orderly fashion until a game
+is over. When you take the turn number "modulo" the length of the array you
+end up with a number sequence that cycles through indexes of the array.
 
-Here's an example using this modulus trick in a two player game, and a five
-player game. No matter how many players are in the game this trick will
-always work.
+Here's an example using modulus in a two player game, and a five player game.
+No matter how many players are in the game this will always work.
 
-(Well, technically there's one specific thing that could cause this trick to
+(Well, technically there's one specific thing that could cause this to
 hiccup. Read more about [Integer Overflow](). Practically it would only
 happen if your game lasted many, many, many turns.)
 
@@ -192,25 +211,37 @@ happen if your game lasted many, many, many turns.)
 | 12   | 12 % 2 == 0 | Alice       | 12 % 5 == 2 | Geordie      |
 | 13   | 13 % 2 == 1 | Bob         | 13 % 5 == 3 | Worf         |
 
+Make one method `getCurrentPlayer` that uses modulus with `turn` and the
+`players` array to return either `"X"` or `"O"` for the current player.
 
-Here's code for taking a turn of Tic Tac Toe. We'll look more at the
-`checkGameOver` next.
+Create a method `isValidMove(row, col)` that checks the bounds of the row and
+column indexes, and checks to make sure no one has played at that position
+before. To check the row and column indexes just make sure the numbers are no
+less than zero and no greater than two. Check to see make sure the place on
+the board is empty by verifying it's value is `null`.
+
+Now we can use these two helper methods inside the `makeMove(row, col)` method.
+First, use `isValidMove(row, col)` to pass the row and column coordinates
+through to make sure the move is possible. If the move is not possible simply
+return from the method without having changed the state of the game at all.
+The main program outside this class will need to detect that it is still the
+same players turn and prompt them to make a legal move.
+
+If the move is valid then it's save to mark the board. The
+`getCurrentPlayer()` method retrieves either an `"X"` or an `"O"` and saves
+that value to the position on the board.
+
+After a legitimate move has been made and a mark has been left the `makeMove`
+method should increment the `turn` number and run logic to see if the game
+has ended.
+
+Here's the code all together. We'll look more at creating the `checkGameOver`
+method next.
 
 ```js
 getCurrentPlayer() {
   index = this.turn % this.players.length
   return this.players[index]
-}
-
-makeMove(row, col) {
-  if (this.isValidMove(row, col)) {
-    // mark the board with the current player ("X" or "O")
-    this.board[row][col] = this.getCurrentPlayer()
-    this.turn++
-
-    // check to see if the move ended the game
-    this.checkGameOver()
-  }
 }
 
 isValidMove(row, col) {
@@ -226,39 +257,95 @@ isValidMove(row, col) {
 
   return true
 }
+
+makeMove(row, col) {
+  if (this.isValidMove(row, col)) {
+    // mark the board with the current player ("X" or "O")
+    this.board[row][col] = this.getCurrentPlayer()
+    this.turn++
+
+    // check to see if the move ended the game
+    this.checkGameOver()
+  }
+}
+
 ```
 
 ## Checking For Game Over
 OK, now we've got a class set up to represent the whole Tic Tac Toe game. The
 class uses a two-dimensional array to represent the board. It's got methods
-that allow players to make moves, it increments through play turns smoothly,
-and makes sure players only play legitimate moves. Let's figure out when this
-thing ends!
+that allow players to make moves, it increments through player turns
+smoothly, and makes sure players only make legitimate moves. Let's figure out
+when this thing ends!
 
 When does Tic Tac Toe end?
 
-* A player wins when that player gets three in a row. Players tie when the
-* board fills up without either player scoring three-in-a-row and with nowhere
-  else to play.
+* A player wins when a player gets three in a row.
+* Players tie when the board fills up no threes-in-a-row
 
 I apologize for having explained end-game conditions for Tic Tac Toe. If
 you've seriously never played Tic Tac Toe, welcome to the game!
 
-The actual annoying part about checking for three-in-a-row is writing the
-code to do it. Let's use what we know about for-loops and arrays to write
-code that checks for wins. After we look at using for-loops to check for
-these win conditions I want to show off one simpler approach too.
+Now let's translate our end-game conditions into code.
+
+Detecting the "cat's games" as the end-game tie condition is easier than
+looking everywhere on the board for three-in-a-rows. Since our game only
+increments the `turn` counter when legitimate moves are made we know that
+ties will always occur at the end of turn nine if there's not a
+three-in-a-row (or is it eight because we start at zero? Watch out for
+off-by-one-errors!).
+
+Detecting three things in a row on our grid requires looking at lots of
+different places on the board. This seems like a job for for-loops. Let's
+write code using for-loops first, then we'll explore a simpler solution.
+
+### Asserting Three-in-a-row
+Let's consider the logic to check if there's three things in a row. We need
+to account for mixtures of three values: `nulls`, `Xs` and `Os`.
+
+We know there's three in a row if the first one matches the second, and if
+the second matches the third. We don't need to check to see if the first
+matches the third because we're already comparing both the first and the
+third to the second.
+
+We could get false positive in our program if we accidentally counted three
+`nulls` in a row as winning. Let's add one more piece of logic to make sure
+that the first spot is not empty, `null`.
+
+Let's see how this logic holds up against some examples. It's nice to be
+thorough and really write out all these variations to make sure our logic is
+correct.
+
+* `[X, X, X]` #1 is not null, #1 matches #2, #2 matches #3. X wins.
+* `[X, X, O]` #1 is not null, #1 matches #2, #2 does not match #3. No win due to a not-match.
+* `[X, X, null]` #1 is not null, #1 matches #2, #2 does not match #3. No win due to a not-match.
+* `[X, null, X]` #1 is not null, #1 does not match #2, #2 matches #3. No win due to a not-match.
+* `[null, X, X]` #1 is null, #1 does not match #2, #2 matches #3. No win due to a not-match.
+* `[null, null, null]` #1 is null, #1 matches #2, #2 matches #3. No win due to #1 being null.
+
+Here is logic checking to see if there's three-in-a-row across the top row:
+
+```js
+let isNotNull = board[0][0] !== null
+let threeInARow = board[0][0] === board[0][1] && board[0][1] === board[0][2]
+return isNotNull && threeInARow
+```
 
 ### Traversing Arrays
-Three in a row can occur in three (or four?) different patterns.
+Now that we have the logic to detect three-in-a-row we need to check for
+three-in-a-row everywhere on the board. Three-in-a-rows appear in three (or
+four?) different patterns:
 
 1. From left to right across a row (on the top, middle, or bottom rows)
 1. From top to bottom along a column (along the left, middle, or right columns)
 1. From top-left to bottom-right in a diagonal
 1. From bottom-left to top-right in a diagonal
 
-The row and column patterns occur three times so it makes sense to write
-for-loops to try to capture some of the redundancy.
+First we write a for-loop to check each row. The loops needs to move across
+all three rows and check to see if the three spots all match each other.
+
+Checking for three-in-a-row across columns is (exactly) similar, so there's a
+for-loop that moves across columns in the same way too.
 
 ```js
 // check each row for three-in-a-row across
@@ -286,10 +373,10 @@ Ah, but there's redundant logic inside the for-loops! It's annoying to have
 to write the same code inside the two for-loops twice. We can write a function
 to capture this logic.
 
-Read more about [Reducing Redundant Redundancy]() and why it can be a great thing.
-
 This function checks three spots on the board and returns `true` or `false`
 if all the spots match each other, and they are not `null`.
+
+Read more about [Reducing Redundant Redundancy]() and why it can be a great thing.
 
 ```js
 function checkThree(row1, col1, row2, col2, row3, col3) {
@@ -303,7 +390,7 @@ function checkThree(row1, col1, row2, col2, row3, col3) {
 }
 ```
 
-## False Optimization
+### False Optimization
 An astute reader will notice that the `checkThree` function above can be
 "optimized," specifically around condensing the if-statement that takes up
 four whole lines.
@@ -357,7 +444,17 @@ called. If you named something `a` you're going to get a lot of useless
 search results like "banana," "banana," "banana," "bandanna," "bandanna,"
 "bandanna," "let a = 78", "search," and so on.
 
-### A Simpler Solution
+### All Together
+Here's all the win checks together. There's a for loop to check across the
+rows, a for-loop to check all the columns, and two one-offs to check the two
+diagonal lines across the board.
+
+It's correct and it totally works. Still, something about it doesn't feel
+like the best way to do things. I especially don't like the repetitive
+if-statements that happen over and over.
+
+In the next section we will see how to abstract all these line checks
+together into one simple for-loop that checks totally everything.
 
 ```js
 // check each row for three-in-a-row across
@@ -389,17 +486,32 @@ return false
 ```
 
 ## A More Complex Simple Solution
-OK, there's one more variation on this game that I personally like. Instead
-of using the two for loops and checking for the diagonals all separately
-we'll store all our line information the same way. The two for loops for the
-horizontal lines and the vertical lines are not that big of a win.
+The problem with the last approach is that we're over-solving the problem. We
+did a great job writing for-loops to check across all the rows, and all the
+columns, but the truth of the matter is there's not many rows or columns to
+check! There's not much bang-for-our-buck in those two for loops that each
+execute exactly three times.
 
-Hard-code an array listing each of the potential three-in-a-row lines with
-the row/column information for each space in the line. Tic-Tac-Toe is a small
-enough game that I think it's OK to get away with this.
+Instead of trying to capture the redundancy of checking the three rows and
+the three columns with for-loops let's bite the bullet and hard code every
+line of three-in-a-row as an array of three coordinates.
 
-We'll look at more complicated grid-assessments when we look at Connect Four in
-the next game.
+Make a list of all three-in-a-row positions, then use the `checkThree`
+function to see if any of those lines are winners. Since there's only eight
+lines it isn't too bad to hard-code this all in to our program.
+
+We'll look at more complicated grid-assessments when we look at Connect Four
+in the next game.
+
+If our Tic Tac Toe board was very tall or very narrow it would make sense to
+write those for-loops to iterate over many of them to check for
+three-in-a-rows. Here we can see that's it is not totally bad to hard code
+all the lines out because there's not many of them.
+
+Standardizing all of the lines in the same format (an array of coordinates)
+allows us to put all of the lines in one array and iterate through them all
+identically so we only need to write one if-statement to see if that line is
+a winner.
 
 ```js
 function hasWinner() {
@@ -412,7 +524,7 @@ function hasWinner() {
     // vertical lines
     [0, 0, 1, 0, 2, 0],
     [0, 1, 1, 1, 2, 1],
-    [0, 2, 1, 2, 2, 2]
+    [0, 2, 1, 2, 2, 2],
 
     // top-left to bottom-right
     [0, 0, 1, 1, 2, 2],
@@ -430,4 +542,112 @@ function hasWinner() {
 
   return false
 }
+```
+
+## Detecting End-Game vs Detecting A Winner
+We've done a great job writing code checking for three-in-a-rows. We can
+totally find out when the game ends. One thing we haven't really accounted
+for is finding out _who_ the winner was when the game is done!
+
+We could change the `checkThree` function so that instead of returning `true`
+or `false` it could also return a string representing the winner like `"X"`,
+`"O"`, or `"tie"`. This isn't the best idea, just because it involves the
+function returning sometimes boolean values, and sometimes string values.
+It's generally good practice to have a function only return one type of value
+(in fact more-strict languages don't even allow a function to possibly return
+mixed types!)
+
+In the case of Tic Tac Toe we can take advantage of the nature of the game to
+determine the winner. That is, the winner will always be the last player to
+make a move. There's never going to be a situation when `"X"` plays and then
+`"O"` somehow gets three-in-a-row.
+
+Let's add logic to the `makeMove` method to check for wins immediately after
+a player makes a move and set that player as the winner if the game is won.
+
+Pay attentions to where the `turn` number is incremented. We're only
+incrementing it if there's not three-in-a-row and if there's not a tie. It
+could be too easy to make a silly order-which-things-occur mistake and
+somehow mark an incorrect player as the winner if we mixed up the order of
+incrementing the `turn` number and the call to `getCurrentPlayer()`.
+
+When we detect that there's a win we update the state of the game so `winner`
+stores the winning player, and the `isGameOver` flag is set to true. Notice
+that I added another small if-statement to the beginning of the `makeMove()`
+function that checks to see if the game is over. This is a small idiot-check
+I like to leave in to prevent the game from getting in to a corrupt state
+after a game has ended. Why should anyone be allowed to make a move if the
+game is over?
+ 
+```js
+makeMove(row, col) {
+  if (this.isGameOver) {
+    return
+  }
+
+  if (this.isValidMove(row, col)) {
+    // mark the board with the current player ("X" or "O")
+    let player = this.getCurrentPlayer()
+    this.board[row][col] = player
+
+    // check to see if the move ended the game
+    if (this.hasThreeInARow()) {
+      this.isGameOver = true
+      this.winner = player
+    } else if (this.turn === 9) {
+      this.isGameOver = true
+      this.winner = 'tie'
+    } else {
+      this.turn++
+    }
+  }
+}
+```
+
+## Wiring Our Engine to Input/Output
+We have a working Tic Tac Toe game engine! Let's hook it up so we can play!
+
+First let's decide how we want the game to appear. I'm going to continue
+using an ASCII terminal environment. The main program will print out the
+board and ask the user to type in something and press enter to make their
+moves.
+
+I don't want the user to have to enter something like `0,0` to make a move on
+the top left of the board, so I'm coming up with a scheme to make their life
+a bit easier. I'm labelling each spot on the board with a letter the user can
+type in to make their moves. I'll write a function in the program maps each
+letter to row column indexes. (Sorry if you're not using a US keyboard. These
+letters are all together on the left-hand side of a US keyboard.)
+
+```
+ q | w | e
+---+---+---
+ a | s | d
+---+---+---
+ z | x | c
+```
+
+All in all I want to print out my board to look like this:
+
+```
+   |   |     q w e
+---+---+---
+   |   |     a s d
+---+---+---
+   |   |     z x c
+
+enter your move:
+```
+
+My main program will need a function `displayBoard` to read each spot on the
+board from the 2D array and print it out properly.
+
+```
+   |   |     q w e
+---+---+---
+   |   |     a s d
+---+---+---
+   |   |     z x c
+
+enter your move:
 ```
