@@ -1,4 +1,5 @@
 # Tic Tac Toe
+
 Write a program that allows two players to play a game of Tic Tac Toe.
 
 Here's everything we'll need to do for this program:
@@ -13,6 +14,9 @@ Here's everything we'll need to do for this program:
 Most of these items will be accomplished without much trouble. Our biggest
 challenge will be writing code to detect when the game has ended. Let's build
 up the game then see what it takes to detect end-game conditions.
+
+If you want to skip to the complete version, go right to repl
+[repl.it](https://repl.it/@geluso/Tic-Tac-Toe)!
 
 ## Two-Dimensional Array Coordinates
 Let's start with the board representation. A two-dimensional array is a great
@@ -43,6 +47,8 @@ arrays has three empty spots.
 * The bottom left corner is at index `board[2][0]`
 * The middle bottom spot is at index `board[2][1]`
 * The bottom right corner is at index `board[2][2]`
+
+![coordinates](./coordinates.png)
 
 If you come from a background dealing with (x,y) coordinates with lines and
 graphs like in a math class you might notice something odd here. In math
@@ -614,12 +620,14 @@ moves.
 
 I don't want the user to have to enter something like `0,0` to make a move on
 the top left of the board, so I'm coming up with a scheme to make their life
-a bit easier. I'm labelling each spot on the board with a letter the user can
+a bit easier. I'm labeling each spot on the board with a letter the user can
 type in to make their moves. I'll write a function in the program maps each
 letter to row column indexes. (Sorry if you're not using a US keyboard. These
 letters are all together on the left-hand side of a US keyboard.)
 
-```
+Using a dictionary to create this mapping is the perfect tool for the job.
+
+```txt
  q | w | e
 ---+---+---
  a | s | d
@@ -627,27 +635,294 @@ letters are all together on the left-hand side of a US keyboard.)
  z | x | c
 ```
 
-All in all I want to print out my board to look like this:
-
+```python
+def letter_to_coordinate(letter):
+    mapping = {
+        "q": (0, 0), "w": (0, 1), "e": (0, 2),
+        "a": (1, 0), "s": (1, 1), "d": (1, 2),
+        "z": (2, 0), "x": (2, 1), "c": (2, 2),
+    }
+    return mapping[letter]
 ```
+
+Overall I want the game to look like this. The program shows the board, it
+shows the keys to enter next to the board, it shows who's turn it is (either
+X or O) and prompts the user to enter a letter.
+
+```txt
    |   |     q w e
 ---+---+---
    |   |     a s d
 ---+---+---
    |   |     z x c
 
-enter your move:
+X: enter your move:
 ```
 
-My main program will need a function `displayBoard` to read each spot on the
-board from the 2D array and print it out properly.
+The main program needs a function `displayBoard` to read each spot on the
+board from the 2D array and print it out properly. It needs to print Xs and
+Os when spots are filled in.
+
+```txt
+ X | X | O   q w e
+---+---+---
+   | O |     a s d
+---+---+---
+ X |   |     z x c
+
+O: enter your move:
+```
+
+Printing the board out is rarely pretty code. I'm taking advantage of
+Python's ability to unpack an array into variables, and using Python's string
+formatting to render the value of variables into a string template.
+
+I'm taking advantage of Python's list comprehensions too. Python list
+comprehensions allow you to take one list and generate another list on the
+fly. Let's look at what's happening line by line.
+
+First, the program accesses the first row at `game.board[0]`. There are three
+things in that row. Python unpacks the array of three things into the three
+variables `q, w, e`. `q` gets the first item, `w` gets the second item, `e`
+gets the third item.
+
+```python
+q, w, e = game.board[0]
+```
+
+The first time I rendered these values into the board I ended up getting a
+board that looks like this. I forgot that the board contains `None` values
+initially.
+
+```txt
+ None | None | None   q w e
+ ---+---+---
+ None | None | None   a s d
+ ---+---+---
+ None | None | None   z x c
+```
+
+I need to write code that detects if each variable is equal to `None` and
+replaces it with an empty string `" "` instead.
 
 ```
-   |   |     q w e
----+---+---
-   |   |     a s d
----+---+---
-   |   |     z x c
+if q is None:
+    q = " "
+if w is None:
+    w = " "
+if e is None:
+    e = " "
+```
 
-enter your move:
+This gets repetitive, especially because I have to do it for every single one
+of the nine variables. The list comprehension is a fancy way Python allows us
+to write this all extremely succinctly.
+
+This basic list comprehension iterates over the three-item list in
+`game.board[0]` and adds an exclamation mark at the end of each string. This
+is just a small example to show you what a simple list comprehension looks
+like.
+
+```python
+[mark + "!" for mark in game.board[0]]
+```
+
+The whole list comprehension I use include an if-else statement. The if else
+statement will return an empty string `" "` if the `mark` on the board is equal
+to `None`, otherwise it will return the value of `mark`, which will be either
+`"X"` or `"O"`.
+
+So. `game.board[0]` accesses the first row for three things. The list
+comprehension iterates over that list of three things and creates a new
+list of three things. The new list is equal to the old list, but it has
+empty strings where `None` values were in the original list. Finally, Python
+unpacks the list of three things into the three variables. Then they're all
+ready to render into the string templates that make up the whole board.
+
+I could have done this all with more simple code and that would have been
+totally fine. The program would have behaved exactly correctly. It just that
+sometimes it's fun and satisfying to take advantage of special features like
+these!
+
+```python
+def display_board(game):
+    # [f(x) if condition else g(x) for x in sequence]
+    q, w, e = [' ' if mark is None else mark for mark in game.board[0]]
+    a, s, d = [' ' if mark is None else mark for mark in game.board[1]]
+    z, x, c = [' ' if mark is None else mark for mark in game.board[2]]
+
+    lines = [
+        "",
+        " %s | %s | %s   q w e" % (q, w, e),
+        "---+---+---",
+        " %s | %s | %s   a s d" % (a, s, d),
+        "---+---+---",
+        " %s | %s | %s   z x c" % (z, x, c)
+    ]
+
+    for line in lines:
+        print(line)
+```
+
+## Source Code
+
+View it on [repl.it](https://repl.it/@geluso/Tic-Tac-Toe)
+
+**main.py**
+```python
+from tic_tac_toe_game import TicTacToeGame
+
+
+def display_board(game):
+    # [f(x) if condition else g(x) for x in sequence]
+    q, w, e = [' ' if mark is None else mark for mark in game.board[0]]
+    a, s, d = [' ' if mark is None else mark for mark in game.board[1]]
+    z, x, c = [' ' if mark is None else mark for mark in game.board[2]]
+
+    lines = [
+        "",
+        " %s | %s | %s   q w e" % (q, w, e),
+        "---+---+---",
+        " %s | %s | %s   a s d" % (a, s, d),
+        "---+---+---",
+        " %s | %s | %s   z x c" % (z, x, c)
+    ]
+
+    for line in lines:
+        print(line)
+
+
+def letter_to_coordinate(letter):
+    mapping = {
+        "q": (0, 0), "w": (0, 1), "e": (0, 2),
+        "a": (1, 0), "s": (1, 1), "d": (1, 2),
+        "z": (2, 0), "x": (2, 1), "c": (2, 2),
+    }
+    return mapping[letter]
+
+
+def prompt_player(game):
+    player = game.get_current_player()
+
+    prompt = "%s: enter your move: " % player
+    print(prompt, end="")
+
+    letter = input()
+    coordinate = letter_to_coordinate(letter)
+    return coordinate
+
+
+def display_winner(game):
+    display_board(game)
+    if game.winner in game.players:
+        print("%s wins!" % game.winner)
+    else:
+        print("CATS! The game ended in a tie.")
+
+
+def main():
+    game = TicTacToeGame()
+
+    while not game.is_game_over:
+        display_board(game)
+        row, col = prompt_player(game)
+        game.make_move(row, col)
+
+    display_winner(game)
+
+
+main()
+```
+
+## Tic Tac Toe Class
+
+**tic_tac_toe_game.py**
+```python
+class TicTacToeGame:
+    def __init__(self):
+        self.reset_game()
+
+    def reset_game(self):
+        self.winner = None
+        self.is_game_over = False
+
+        self.turn = 0
+        self.players = ["X", "O"]
+
+        self.board = [
+            [None, None, None],
+            [None, None, None],
+            [None, None, None],
+        ]
+
+    def get_current_player(self):
+        index = self.turn % len(self.players)
+        player = self.players[index]
+        return player
+
+    def is_valid_move(self, row, col):
+        if row < 0 or col < 0 or row > 2 or col > 2:
+            return False
+
+        if self.board[row][col] is not None:
+            return False
+
+        return True
+
+    def make_move(self, row, col):
+        if self.is_game_over:
+            return
+
+        if not self.is_valid_move(row, col):
+            return
+
+        # mark the board with the current player X or O
+        player = self.get_current_player()
+        self.board[row][col] = player
+
+        # check to see if the move ended the game
+        if self.has_winner():
+            self.is_game_over = True
+            self.winner = player
+        elif self.turn == 8:
+            self.is_game_over = True
+            self.winner = "tie"
+        else:
+            self.turn += 1
+
+    def check_three(self, row1, col1, row2, col2, row3, col3):
+        board = self.board
+
+        isNotNull = board[row1][col1] is not None
+        oneMatchesTwo = board[row1][col1] is board[row2][col2]
+        twoMatchesThree = board[row2][col2] is board[row3][col3]
+        threeInARow = oneMatchesTwo and twoMatchesThree
+
+        if isNotNull and threeInARow:
+            return True
+        return False
+
+    def has_winner(self):
+        lines = [
+            # horizontal lines
+            [0, 0, 0, 1, 0, 2],
+            [1, 0, 1, 1, 1, 2],
+            [2, 0, 2, 1, 2, 2],
+
+            # vertical lines
+            [0, 0, 1, 0, 2, 0],
+            [0, 1, 1, 1, 2, 1],
+            [0, 2, 1, 2, 2, 2],
+
+            # top-left to bottom-right
+            [0, 0, 1, 1, 2, 2],
+
+            # bottom-left to top-right
+            [2, 0, 1, 1, 0, 2]
+        ]
+
+        for line in lines:
+            if self.check_three(line[0], line[1], line[2], line[3], line[4], line[5]):
+                return True
+        return False
 ```
