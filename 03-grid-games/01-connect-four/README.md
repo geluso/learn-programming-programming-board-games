@@ -7,40 +7,29 @@ last free spot in the column.
 We'll use the knowledge and experience we gained from building Tic Tac Toe.
 Both games have a 2D grid. We'll need to make sure we prevent ourselves from
 accessing indexes off the board. Both games have two players who alternate
-turns. We'll need to make sure players only make valid moves and we keep track
-of the current player correctly.
+turns. We'll need to make sure players only make valid moves and make sure we
+keep track of the current player correctly.
 
 There are two main "areas of research" we'll need to prove to ourselves we can
-handle before we seriously consider tackling this game. The two new things are
-simulating dropping tokens, and searching for all winning combinations in the
-grid. OK, searching for winning combinations in the grid isn't a totally new
-concept, but it's scaled up for what we were looking at in Tic Tac Toe. It's
-worth some penciling on paper.
+handle before we seriously start tackling this game. We need to make sure we
+can #1: simulate dropping tokens in a column and having them fall to the
+bottom. And, #2: be able to detect every possible winning condition.
 
 The good news about these concepts is we can explore solutions for them
 independently from building out the rest of the whole game. When you start
 a new project it is important to prove to yourself that you can do the hardest
 or most unknown things first. It's bad to build up architecture for something
-you later find out is impossible to do.
+you later find out is impossible to do. Anyone ever read the old "Wayside
+School" books where the school built elevators where one only went up and one
+only went down? Bad foresight right there.
 
-There's one fun bit about placing tokens in Connect Four. Unlike Tic Tac Toe,
-tokens played in Connect Four have a "falling in to place" effect. Instead
-of players specifying the exact spot their token will go players specify which
-column they want to play their token on. We will need to write code that drops
-tokens in to place.
+Both of these concepts have some fun stuff in them. It's kind of exciting to
+simulate dropping the tokens and we can add some animation to the program to
+have a cool effect seeing the tokens drop in to place. For detecting winning
+combinations we'll learn a conceptual technique involving a "jig" and a Ouija
+board.
 
-The number of places where winning combinations can occur in Connect Four is
-much larger than the eight winning combinations a line could occur in Tic Tac
-Toe. We're going to need to either enumerate out all possible winning locations
-manually, or write code that searches for them.
-
-There's 50 locations where four-in-a-row can occur on a 5x7 board.
-
-* Horizontal: 4 positions per row * 5 rows = 20 possibilities
-* Vertical: 2 positions per column * 7 columns = 14 possibilities
-* Forward slash: 8 possibilities
-* Back slash: 8 possibilities
-* 50 total location possibilities
+Let's look at dropping tokens in to place first.
 
 ## Dropping Tokens in to Place
 The basic idea for dropping a token is to start at the bottom of a column
@@ -133,6 +122,24 @@ X  O  O  O  O  O  X
 ```
 
 ## Searching for Win Conditions
+OK, searching for winning conditions in the grid is not a totally new concept,
+but it's scaled up from what we were looking at in Tic Tac Toe. It's worth some
+penciling on paper.
+
+The number of places where winning combinations can occur in Connect Four is
+much larger than the eight winning combinations a line could occur in Tic Tac
+Toe. We're going to need to either enumerate out all possible winning locations
+manually, or write code that searches for them. We'll learn a good technique
+involving a "jig" and a "Ouija board" to search for all solutions.
+
+There's 50 locations where four-in-a-row can occur on a 5x7 board.
+
+* Horizontal: 4 positions per row * 5 rows = 20 possibilities
+* Vertical: 2 positions per column * 7 columns = 14 possibilities
+* Forward slash: 8 possibilities
+* Back slash: 8 possibilities
+* 50 total location possibilities
+
 Here's a visual representation of the patterns we'll need to check for across
 the grid. We need to check for four-in-a-row horizontally, vertically, in a
 forward-slash diagonal and a back-slash diagonal.
