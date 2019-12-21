@@ -5,7 +5,7 @@ effectively choose one column to drop a token in. The token falls down to the
 last free spot in the column. 
 
 We'll use the knowledge and experience we gained from building Tic Tac Toe.
-Both games have a 2D grid. We'll need to make sure we prevent ourself from
+Both games have a 2D grid. We'll need to make sure we prevent ourselves from
 accessing indexes off the board. Both games have two players who alternate
 turns. We'll need to make sure players only make valid moves and we keep track
 of the current player correctly.
@@ -15,7 +15,7 @@ handle before we seriously consider tackling this game. The two new things are
 simulating dropping tokens, and searching for all winning combinations in the
 grid. OK, searching for winning combinations in the grid isn't a totally new
 concept, but it's scaled up for what we were looking at in Tic Tac Toe. It's
-worth some pencilling on paper.
+worth some penciling on paper.
 
 The good news about these concepts is we can explore solutions for them
 independently from building out the rest of the whole game. When you start
@@ -154,7 +154,7 @@ Now imagine sliding the entire arrangement of all the things we're checking for
 across the grid. If we slide the top-left corner all around the grid so it
 visits each dot then we can check the whole grid for every line arrangement.
 
-I like to think of this as building a "jig" and scanning a across a ouijie
+I like to think of this as building a "jig" and scanning a across a Ouija
 board. The jig is like a wood-working jig. Wood workers create jigs to hold
 things in place while they build. Our jig is a conceptual jig. It holds in
 place the locations of things we're looking for. We can move it across our
