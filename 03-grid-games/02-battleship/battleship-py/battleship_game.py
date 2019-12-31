@@ -1,38 +1,7 @@
+from util import direction_to_dx_dy
+from ship import Carrier, Battleship, Cruiser, Submarine, Destroyer
+
 EMPTY = "."
-
-
-class Ship:
-    def __init__(self, size):
-        self.size = size
-        self.hits = {}
-        self.dx = None
-        self.dy = None
-        self.direction = None
-
-
-class Carrier(Ship):
-    def __init__(self):
-        super(self, 5)
-
-
-class Battleship(Ship):
-    def __init__(self):
-        super(self, 4)
-
-
-class Cruiser(Ship):
-    def __init__(self):
-        super(self, 3)
-
-
-class Submarine(Ship):
-    def __init__(self):
-        super(self, 3)
-
-
-class Destroyer(Ship):
-    def __init__(self):
-        super(self, 2)
 
 
 PLACING = 0
@@ -65,13 +34,19 @@ class BattleshipGame:
         ]
 
     def get_current_player(self):
-        return "X"
+        index = self.turn % len(self.players)
+        return self.players[index]
 
     def make_move(self, col):
         pass
 
     def place_ship(self, ship, row, col, direction):
-        pass
+        player = self.get_current_player()
+        dx, dy = direction_to_dx_dy(direction)
+        for n in range(ship):
+            drow = row + dy * n
+            dcol = col + dx * n
+            self.board[drow][dcol] = player
 
 
 BattleshipGame.PLACING = PLACING

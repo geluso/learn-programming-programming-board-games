@@ -1,4 +1,5 @@
 from battleship_game import BattleshipGame
+from util import direction_to_dx_dy
 
 
 def display_board(game):
@@ -44,19 +45,6 @@ def display_placement_preview(game, ship, irow, icol, direction):
         game.board[drow][dcol] = "."
 
 
-def direction_to_dx_dy(direction):
-    dx, dy = 0, 0
-    if direction == "right":
-        dx = 1
-    if direction == "down":
-        dy = 1
-    if direction == "left":
-        dx = -1
-    if direction == "up":
-        dy = -1
-    return dx, dy
-
-
 def prompt_player(game):
     player = game.get_current_player()
     print("%s: make a move: " % player, end="")
@@ -79,9 +67,24 @@ def prompt_player_ship(game):
 
 
 def prompt_player_location(game):
-    print("Enter a location (B4): ", end="")
-    location = input()
-    return location
+    is_valid = False
+    while not is_valid:
+        print("Enter a location (B4): ", end="")
+        location = input()
+        if len(location) != 2:
+            print("You must enter a valid two-letter coordinate like A2.")
+        else:
+            row, col = location
+            if row not in "ABCDEFGH":
+                print("Your row must be a letter ABCDEFGH.")
+            elif col not in "123456789":
+                print("Your column must be between 1 and 9.")
+            else:
+                row = "ABCDEFGH".index(row)
+                col = int(col) - 1
+                is_valid = True
+    print("You chose", row, col)
+    return row, col
 
 
 def prompt_player_direction(game, ship, row, col):
@@ -112,7 +115,6 @@ def main():
 
             ship = prompt_player_ship(game)
             row, col = prompt_player_location(game)
-            ship, row, col = 3, 3, 3
             direction = prompt_player_direction(game, ship, row, col)
 
             game.place_ship(ship, row, col, direction)
