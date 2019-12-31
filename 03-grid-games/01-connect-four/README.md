@@ -71,9 +71,9 @@ test_drop_board = [
 ```
 
 I'm writing a function to show what's in the board. I chose to put two empty
-spaces `"  "` between columns because fonts in my terminal all about twice as
+spaces `"  "` between columns because fonts in my terminal are about twice as
 tall as they are wide. Putting the spaces between the columns makes the whole
-grid appear more rectangular, as I would expect in Connect Four.
+grid appear more rectangular, as I would expect to see playing Connect Four.
 
 ```python
 def display_board(game):
@@ -141,14 +141,14 @@ There's 50 locations where four-in-a-row can occur on a 5x7 board.
 * 50 total location possibilities
 
 Here's a visual representation of the patterns we'll need to check for across
-the grid. We need to check for four-in-a-row horizontally, vertically, in a
-forward-slash diagonal and a back-slash diagonal.
+the grid. We need to check for four four-in-a-row patterns: horizontally,
+vertically, in a diagonal forward-slash, and in a diagonal back-slash.
 
 Here's what all we're checking for:
 
 ![jig of all the patterns we're looking for](./jig.png)
 
-Here's how we can pluck the values out for each of the four lines:
+These are the indexes where we need to pluck the values from for each of the four lines:
 
 ```python
 h1, h2, h3, h4 = [0,0], [0, 1], [0, 2], [0, 3] # horizontal
@@ -157,19 +157,18 @@ f1, f2, f3, f4 = [0,0], [1, 1], [2, 2], [3, 3] # forward slash "\"
 b1, b2, b3, b4 = [0,3], [1, 2], [2, 1], [3, 0] # back slash "/"
 ```
 
-Now imagine sliding the entire arrangement of all the things we're checking for
-across the grid. If we slide the top-left corner all around the grid so it
-visits each dot then we can check the whole grid for every line arrangement.
+This is great for checking for patterns in the top-left corner. We need to be
+able to find these patterns when they occur anywhere in the board. Let's use
+the pattern of four lines we've established and move the entire structure
+around to look with the same patterns in different board locations. If we
+slide the top-left corner all around the grid so it visits each dot then we can
+check the whole grid for every line arrangement.
 
-I like to think of this as building a "jig" and scanning a across a Ouija
-board. The jig is like a wood-working jig. Wood workers create jigs to hold
-things in place while they build. Our jig is a conceptual jig. It holds in
-place the locations of things we're looking for. We can move it across our
-grid and see if it moves across any matches.
-
-Wait, what about when the jig moves off the board so some of the parts are
-reaching out of bounds? We'll fix this when we create a virtual interface
-for the grid.
+I like to think of this as building a "jig" and scanning across a Ouija board.
+The jig is like a wood-working jig. Wood workers create jigs to hold things in
+place while they build. Our jig is a conceptual jig. It holds in place patterns
+we're looking for. We can move it across our grid and see if any pattern fills
+up with a complete match.
 
 With the jig we can create two functions. One function is two for-loops that
 traverse over the entire grid one spot at a time. This function represents
@@ -215,11 +214,14 @@ def four_match(grid, c1, c2, c3, c4):
   return p1_is_not_none and all_match
 ```
 
-## Virtual Grid Interface
-Calling this a "virtual grid interface" makes it sounds fancy. What we're
-going here is actually not that dramatic. Sometimes its just nice to make
-things sound exciting.
+Wait, what about when the jig moves off the board so parts of patterns hang off
+the board? The program will break if we try to access indexes out of the bounds
+of the array.
 
+We can fix this by wrapping all array accesses in a function that will prevent
+us from making mistakes.
+
+## Virtual Grid Interface
 The virtual grid interface is going to be a function called `get(grid, row,
 col)` that returns the value at the row/column coordinate, or returns an
 empty value if the row/column coordinate is not a legitimate position. This
@@ -227,9 +229,19 @@ allows us to write code like with the jig above that searches across the
 entire grid without worrying about parts of the jig extending off the actual
 grid.
 
+Any index off the grid return a value appearing as if it is an empty space.
+Wrapping all our array accesses through this function makes it extremely easy
+to check for complex patterns. We don't need to account for out-of-bounds
+errors in our main algorithm, so the main algorithm stays simple and
+straight-forward to itself.
+
+Calling this a "virtual grid interface" makes it sounds fancy. What we're
+going here is actually not that dramatic. Sometimes it's nice to make
+things sound exciting.
+
 What we're creating here is basically an upgraded `is_valid(grid, row, col)`
-function. Instead of just returning `True` or `False` if the coordinate is
-valid, it will just return empty values for any invalid coordinate.
+function. Instead of returning `True` or `False` if the coordinate is
+valid, it will return empty values for any invalid coordinate.
 
 ```python
 def get(grid, row, col):
@@ -241,8 +253,8 @@ def get(grid, row, col):
 Tada! Our own very very fancy Virtual Grid Interface.
 
 ## Putting It All Together
-Now we've seen everything we need to build to program our own version of Connect Four.
-Here's the pieces we put together:
+Now we've seen all the different parts we need to know to program our own
+version of Connect Four. Here's the parts we need to put together:
 
 * A 2D array to represent the 5x7 grid.
 * A drop function that drops tokens into the first available space in a column.
@@ -250,6 +262,7 @@ Here's the pieces we put together:
 * A virtual grid interface that saves our jig from accessing the grid out of bounds.
 * A class that holds the grid, these methods and keeps track of players and the
   turn number.
+* A main program that displays the board and feeds user input to the game.
 
 
 ## Alternative Approach: .appending() Tokens in to Place
@@ -507,7 +520,7 @@ class ConnectFourGame:
         return False
 
     def jig(self, row, col):
-        # gah, the lines were just too long when using "row" and "col"
+        # gah, the lines were too long when using "row" and "col"
         r, c = row, col
 
         # horizontal, vertical, forward-slash "\", back-slash "/"
