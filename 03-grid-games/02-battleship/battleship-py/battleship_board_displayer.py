@@ -31,7 +31,10 @@ def display_placement_preview(player, ship, irow, icol, direction):
     for n in range(ship.size):
         drow = irow + dy * n
         dcol = icol + dx * n
-        if player.ship_placements.board[drow][dcol] != ".":
+
+        if not player.ship_placements.is_valid(drow, dcol):
+            is_valid = False
+        elif player.ship_placements.board[drow][dcol] != ".":
             is_valid = False
             player.ship_placements.board[drow][dcol] = "X"
         else:

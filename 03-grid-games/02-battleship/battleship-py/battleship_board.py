@@ -21,6 +21,11 @@ class BattleshipBoard:
             [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
         ]
 
+    def is_valid(self, row, col):
+        if row < 0 or col < 0 or row >= len(self.board) or col >= len(self.board[row]):
+            return False
+        return True
+
     def fire(self, row, col):
         pass
 
