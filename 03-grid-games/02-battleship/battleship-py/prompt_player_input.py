@@ -51,13 +51,18 @@ def prompt_player_direction(player, ship, row, col):
     direction = directions[index]
 
     while not is_chosen:
-        display_placement_preview(player, ship, row, col, direction)
+        # choose the next direction and see if it is valid
+        index = (index + 1) % len(directions)
+        direction = directions[index]
 
-        print("Confirm direction", direction, "(y):", end="")
-        choice = input()
-        if choice == "y":
-            is_chosen = True
+        is_valid = display_placement_preview(player, ship, row, col, direction)
+        if not is_valid:
+            # notify the user and wait for them to press enter
+            print("Invalid location. Choose again.")
+            acknowledge = input()
         else:
-            index = (index + 1) % len(directions)
-            direction = directions[index]
+            print("Confirm direction", direction, "(y):", end="")
+            choice = input()
+            if choice == "y":
+                is_chosen = True
     return direction
