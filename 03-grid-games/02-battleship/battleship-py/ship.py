@@ -18,24 +18,29 @@ class Ship:
 
 class Carrier(Ship):
     def __init__(self):
+        self.name = "Carrier"
         super(Carrier, self).__init__(5)
 
 
 class Battleship(Ship):
     def __init__(self):
+        self.name = "Battleship"
         super(Battleship, self).__init__(4)
 
 
 class Cruiser(Ship):
     def __init__(self):
+        self.name = "Cruiser"
         super(Cruiser, self).__init__(3)
 
 
 class Submarine(Ship):
     def __init__(self):
+        self.name = "Submarine"
         super(Submarine, self).__init__(3)
 
 
 class Destroyer(Ship):
     def __init__(self):
+        self.name = "Destroyer"
         super(Destroyer, self).__init__(2)

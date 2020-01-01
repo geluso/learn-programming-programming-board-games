@@ -50,5 +50,6 @@ def display_placement_preview(player, ship, irow, icol, direction):
     for n in range(ship.size):
         drow = irow + dy * n
         dcol = icol + dx * n
-        player.ship_placements.board[drow][dcol] = "."
+        if player.ship_placements.is_valid(drow, dcol):
+            player.ship_placements.board[drow][dcol] = "."
     return is_valid

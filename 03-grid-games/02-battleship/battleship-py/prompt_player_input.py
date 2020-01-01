@@ -5,11 +5,11 @@ def prompt_player_ship(player):
     is_chosen = False
     while not is_chosen:
         print("Select a ship:")
-        print("1.    ** Destroyer")
-        print("2.   *** Submarine")
-        print("3.   *** Cruiser")
-        print("4.  **** Battleship")
-        print("5. ***** Carrier")
+        for i, ship in enumerate(player.ships):
+            asterisks = "*" * ship.size
+            padding = " " * (5 - ship.size)
+            msg = i + 1, padding, asterisks, "Placed:", ship.is_placed, ship.name
+            print(*msg)
 
         # subtract one to convert the number to a zero-index
         ship_index = int(input()) - 1

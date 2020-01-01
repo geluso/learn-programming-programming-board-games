@@ -17,6 +17,7 @@ class BattleshipPlayer:
     def place_ship(self, ship, row, col, direction):
         self.ship_placements.place_ship(ship, row, col, direction)
         ship.is_placed = True
+        self.placed_ships += 1
 
     def is_all_ships_sunk(self):
         for ship in self.ships:

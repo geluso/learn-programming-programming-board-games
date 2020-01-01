@@ -6,7 +6,8 @@ from battleship_player import BattleshipPlayer
 
 
 PLACING = 0
-FIRING = 1
+COMPUTER_PLACEMENT = 1
+FIRING = 2
 
 
 class BattleshipGame:
@@ -20,6 +21,12 @@ class BattleshipGame:
 
         self.turn = 0
         self.players = [BattleshipPlayer(), BattleshipPlayer()]
+
+    def next_phase(self):
+        if self.phase == PLACING:
+            self.phase = COMPUTER_PLACEMENT
+        elif self.phase == COMPUTER_PLACEMENT:
+            self.phase == FIRING
 
     def get_current_player(self):
         index = self.turn % len(self.players)
@@ -40,6 +47,10 @@ class BattleshipGame:
         player = self.get_current_player()
         player.place_ship(ship_type, row, col, direction)
 
+    def place_ai_ships(self):
+        pass
+
 
 BattleshipGame.PLACING = PLACING
+BattleshipGame.COMPUTER_PLACEMENT = COMPUTER_PLACEMENT
 BattleshipGame.FIRING = FIRING

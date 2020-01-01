@@ -24,7 +24,18 @@ def main():
             direction = prompt_player_direction(player, ship, row, col)
 
             player.place_ship(ship, row, col, direction)
+
+            print("placed:", player.placed_ships, len(player.ships))
+            if player.placed_ships == len(player.ships):
+                game.next_phase()
+        elif game.phase == game.COMPUTER_PLACEMENT:
+            print("Placing AI ships.")
+            input()
+            game.place_ai_ships()
+            game.next_phase()
         elif game.phase == game.FIRING:
+            print("Entering Firing phase.")
+            input()
             pass
     display_winner(game)
 
