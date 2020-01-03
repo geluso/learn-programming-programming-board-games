@@ -11,14 +11,18 @@ def prompt_player_ship(player):
             msg = i + 1, padding, asterisks, "Placed:", ship.is_placed, ship.name
             print(*msg)
 
-        # subtract one to convert the number to a zero-index
-        ship_index = int(input()) - 1
-        ship = player.ships[ship_index]
-
-        if ship.is_placed:
-            print("Ship already placed! Choose another.")
+        choice = input()
+        if choice not in "12345":
+            print("Choose a ship number 1-5")
         else:
-            is_chosen = True
+            # subtract one to convert the number to a zero-index
+            ship_index = int(choice) - 1
+            ship = player.ships[ship_index]
+
+            if ship.is_placed:
+                print("Ship already placed! Choose another.")
+            else:
+                is_chosen = True
     return ship
 
 

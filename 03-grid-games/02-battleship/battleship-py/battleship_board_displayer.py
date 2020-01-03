@@ -1,7 +1,7 @@
 from util import direction_to_dx_dy
 
 
-def display_board(game):
+def display_board(board):
     print()
     print("Ships left:")
     print("X: 2[  ] 3[   ] 3[   ] 4[    ] 5[     ]")
@@ -10,7 +10,7 @@ def display_board(game):
     print("   1  2  3  4  5  6  7  8  9  ")
 
     rows = list("ABCDEFGH")
-    for letter, row in zip(rows, game.board):
+    for letter, row in zip(rows, board):
         line = letter + "  "
         line += "  ".join(row) + "  " + letter
         print(line)

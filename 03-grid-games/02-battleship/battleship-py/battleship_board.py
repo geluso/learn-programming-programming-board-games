@@ -29,6 +29,17 @@ class BattleshipBoard:
     def fire(self, row, col):
         pass
 
+    def is_room_for_ship(self, ship, row, col, direction):
+        dx, dy = direction_to_dx_dy(direction)
+        for n in range(ship.size):
+            drow = row + dy * n
+            dcol = col + dx * n
+            if not self.is_valid(drow, dcol):
+                return False
+            if self.board[drow][dcol] is not EMPTY:
+                return False
+        return True
+
     def place_ship(self, ship, row, col, direction):
         dx, dy = direction_to_dx_dy(direction)
         for n in range(ship.size):
