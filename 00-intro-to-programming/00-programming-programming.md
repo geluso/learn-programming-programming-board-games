@@ -101,38 +101,36 @@ main()
 ```
 
 ## Observing the Program
-* `//` slashes are comments. We're allowed to add notes throughout out program
+* `//` slashes are comments. We're allowed to add notes throughout our program
   describing at a high-level what's going on with different pieces of code.
 * There's **variables** in the program used to store information.
   * `boardGameStores` defines a list/array of board game stores.
   * `myLocation` stores information about the location I'm looking from.
-  * `closest` is a variable that get a value that **returns** from the
+  * `closest` is a variable that is set to a value that **returns** from the
     `findClosestPlace` function.
 * We're using an array `[]` to store items in a list.
-* We're using **objects** `{}` to build a single thing that holds three
-  properties and their values: `name`, `lat` and `long`. It's nice to group
-  these properties and values together because they represent the same one
-  thing.
-* There are some built in functions like `Math.sqrt()` that perform common
-  operations.
+* We're using **objects** `{}` to group together `name`, `lat`, and `long`
+  properties that represent a single board game store.
+* `Math.sqrt()` is a function built in to the language. Some common operations
+  like this are provided, and we wouldn't want to program them ourself.
 * `console.log` is a built in function that prints our output.
-* There's three functions in this program, `main`, `findClosestPlace` and
-  `findDistance`. Functions allow us to organize and reuse code. Reading the
-  contents of just the `main` function gives you a good idea what's happening
-  in the program without having to look at what's going on inside the
-  `findClosestPlace` function.
+* There's three functions we've defined in this program, `main`,
+  `findClosestPlace` and `findDistance`. Functions allow us to organize and
+  reuse code. Reading the contents of just the `main` function gives you a good
+  idea what's happening in the program without having to look at what's going
+  on inside the `findClosestPlace` function.
 * Each function may accept **parameters**. Parameters define data passed to the
   function. Parameter values can be different each time the function is ran.
-* The last line of the program has a call to the `main()` function to run the
-  whole program.
+* The last line of the program is `main()`. This executes the `main()` function
+  and runs this whole program.
 
 One thing worth mentioning right off the bat: it's a common misconception that
 programming requires lots of math. Don't be discouraged! This is not true!
-Programming is more about logic than math. Especially in my own personally
+Programming is more about logic than math. Especially in my own personal
 programming I rarely use anything more complicated than that distance formula.
 
-Now that you've seen one program in whole, let's continue talking more about
-each individual parts.
+Now that you've seen one program in whole, let's take a look at what else is
+ahead.  
 
 Here's what we'll cover as we learn the fundamentals of programming:
 
