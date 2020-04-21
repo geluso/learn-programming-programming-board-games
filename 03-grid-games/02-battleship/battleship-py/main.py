@@ -78,5 +78,5 @@ def main():
             pass
     display_winner(game)
 
-
+print('Welcome to Battleship')
 main()
