@@ -79,4 +79,5 @@ def main():
     display_winner(game)
 
 
+print("ARRRRR!! Welcome to the high seas. Prepare to play:    BATTLESHIP!!")
 main()
