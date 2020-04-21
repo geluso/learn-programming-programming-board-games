@@ -80,4 +80,6 @@ def main():
 
 
 print("ARRRRR!! Welcome to the high seas. Prepare to play:    BATTLESHIP!!")
+print('Welcome to Battleship')
+
 main()
