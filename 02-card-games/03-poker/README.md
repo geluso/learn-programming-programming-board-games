@@ -581,3 +581,13 @@ card is.
 We can factor this in to our program by keeping track of the high card
 contributing to the category as well as the high card contributing just
 along for the ride.
+
+## Human Version Computation
+I had an idea here to illustrate all the computation happening here in terms
+of having an individual person checking for each type of card hand. Each person
+would have a whiteboard where they can mark down what information they're keeping
+track of, just like a function would.
+
+Once I figure out an efficient way to combine all of these checks in to one
+sequence we can compare the individual human approach to the effectiveness of
+one person following a sophisticated flow chart.
