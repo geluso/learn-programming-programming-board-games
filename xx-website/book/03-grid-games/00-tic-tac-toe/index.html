@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:8642/README.md -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>README.md</title>
+	
+	<link rel="stylesheet" href="./tic-tac-toe_files/markserv.css">
+	<link rel="stylesheet" href="./tic-tac-toe_files/highlight-js-github-gist.css">
+	<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});</script>
+	<script src="./tic-tac-toe_files/MathJax.js" id=""></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<article class="markdown-body">
+<h1 id="tic-tac-toe">Tic Tac Toe</h1>
+<p>Write a program that allows two players to play a game of Tic Tac Toe.</p>
+<p>Here's what we'll need for the program:</p>
+<ul>
+<li>A way to represent the board</li>
+<li>A way to display the board</li>
+<li>Keep track of who's turn it is</li>
+<li>Allow players to make moves</li>
+<li>Prevent players from making impossible moves</li>
+<li>Detect if a player wins</li>
+</ul>
+<p>Most of these items will be accomplished without much trouble. Our biggest
+challenge will be writing some code to detect when the game is won (or over).
+Let's build up the game then see what it takes to detect end-game conditions.</p>
+<h2 id="two-dimensional-array-coordinates">Two-Dimensional Array Coordinates</h2>
+<p>Let's start with the board representation. A two-dimensional array is a great
+choice for this grid game. Here's a 3x3 grid filled with <code>null</code> values to
+represent an empty board. Let's practice accessing different spots on the
+board to make sure we've got our coordinates all figured out.</p>
+<pre><code class="hljs"><span class="hljs-string">board</span> <span class="hljs-string">=</span> <span class="hljs-string">[</span>
+  <span class="hljs-string">[null,</span> <span class="hljs-literal">null</span><span class="hljs-string">,</span> <span class="hljs-literal">null</span><span class="hljs-string">],</span>
+  <span class="hljs-string">[null,</span> <span class="hljs-literal">null</span><span class="hljs-string">,</span> <span class="hljs-literal">null</span><span class="hljs-string">],</span>
+  <span class="hljs-string">[null,</span> <span class="hljs-literal">null</span><span class="hljs-string">,</span> <span class="hljs-literal">null</span><span class="hljs-string">],</span>
+<span class="hljs-string">]</span>
+</code></pre>
+<p>We're saving the entire two-dimensional grid in to a variable called <code>board</code>.
+The board has three rows going from top to bottom, and three columns going
+from left to right.</p>
+<p>If we want to access the top-left corner of the board we would access
+<code>board[0][0]</code> because it's in the first row, in the first column. Remember
+that the grid is an array of arrays. That is to say, the <code>board</code> variable
+itself refers to one array. That array contains three things. Each of those
+things is an array itself. Each of the inner arrays has three empty spots.</p>
+<ul>
+<li>The top left corner is at index <code>board[0][0]</code></li>
+<li>The middle spot is at index <code>board[1][1]</code></li>
+<li>The bottom left corner is at index <code>board[2][0]</code></li>
+<li>The middle bottom spot is at index <code>board[2][1]</code></li>
+<li>The bottom right corner is at index <code>board[2][2]</code></li>
+</ul>
+<p>If you come from a background dealing with (x,y) coordinates with lines and
+graphs like in a math class you might notice something odd here. In math
+classes when we plot lines we usually draw a graph with the origin <code>(0,0)</code> in
+the bottom left, and two: one for <code>x</code> extending to the right, and one for <code>y</code>
+extending up.</p>
+<p>If we plotted each <code>board[row][column]</code> index as points on a graph we would
+see something different than we're used to seeing in math. In math graphs the
+<code>y</code> coordinates start at zero in the bottom left and their values increase as
+they go up. The way we access our array the row <code>"y"</code> coordinates start at
+<code>0</code> at the top and they increase as they go down. This is a common thing in
+computer graphics. Often in computer graphics the top of the screen is where
+the zero value for y-coordinates start, and the y-coordinates increase as you
+move from the top of the screen toward the bottom.</p>
+<p>Since I'm personally used to y-coordinates increasing as they go up I strive
+to refer to array indexes with the words "row" and "column," especially in
+strictly grid-like structures. It makes it easier for me to reason about
+where things are located.</p>
+<h2 id="game-engine">Game Engine</h2>
+<p>Here's a simplified version of how the main program will use this class.
+Notice how the main program primarily uses the methods <code>isGameOver</code>, and
+<code>makeMove</code>.</p>
+<pre><code class="hljs language-js">game = <span class="hljs-keyword">new</span> TicTacToeGame()
+<span class="hljs-keyword">while</span> (!game.isGameOver()) {
+  row, col = promptPlayer(game)
+  game.makeMove(row, col)
+  displayBoard(game)
+}
+displayWinner(game)
+</code></pre>
+<p>Some complexity of this program has been abstracted away with the methods
+display methods <code>displayBoard</code> and <code>displayWinner</code>. You can assume those
+methods would interact with more <code>TicTacToeGame</code> methods like
+<code>getCurrentPlayer()</code> and <code>getWinner()</code>.</p>
+<p>Here's an outline of the whole <code>TicTacToeGame</code> class:</p>
+<pre><code class="hljs language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TicTacToeGame</span> </span>{
+  winner = <span class="hljs-literal">null</span>
+  isGameOver = <span class="hljs-literal">false</span>
+
+  turn = <span class="hljs-number">0</span>
+  players = [<span class="hljs-string">'X'</span>, <span class="hljs-string">'O'</span>]
+
+  board = [
+    [<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>],
+    [<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>],
+    [<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>]
+  ]
+
+  resetGame() {}
+  makeMove(row, col) {}
+
+  getBoard() {}
+  getCurrentPlayer() {}
+
+  isGameOver() {}
+  getWinner() {}
+
+  isValidMovie(row, col) {}
+  checkGameOver() {}
+}
+</code></pre>
+<p>It has some state to keep track of if the game is over and who won. It has a
+variable <code>turn</code> to keep track of what turn it is. Knowing what number turn it
+is will help us determine which player is making a move. The class will use
+the <code>turn</code> number along with the <code>players</code> array with <code>"X"</code> and <code>"O"</code>
+strings to keep track of the players.</p>
+<p>The class has a reference to the two-dimensional array representing the board
+and it has methods to manipulate all of these things together.</p>
+<p>Notice that the class has some methods that we'll use with from outside the
+class, and two methods that will only be used by the class internally. The
+idea here is that our main program doesn't need access to every method in the
+class. It will call methods like <code>isGameOver()</code> to see if the program should
+continue running. It won't need to call methods like <code>isValidMove()</code> because
+<code>makeMove()</code> will call that method internally itself. Programming languages
+often call the different between externally-used and internally-used methods
+<code>public</code> and <code>private</code> methods.</p>
+<p>Read more about <a href="http://localhost:8642/README.md">encapsulation</a>.</p>
+<h2 id="taking-turns">Taking Turns</h2>
+<p>Here's a very common pattern while programming board games: having players
+take turns! Here's the general pattern we'll follow:</p>
+<ul>
+<li>Have the current player attempt to make a move</li>
+<li>Double-check to make sure the move is legitimate</li>
+<li>Manipulate the state of the game as per the move</li>
+<li>Advance the state of the game to the next player</li>
+</ul>
+<p>Keeping track of the current player is conveniently tracked using the array
+of players, counting how many turns have occurred, and using the modulus
+operator. Check out this little example first:</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// referring to a Star Trek TNG poker scene</span>
+<span class="hljs-comment">// https://www.youtube.com/watch?v=XRE9HNUmdtA</span>
+players = [<span class="hljs-string">'Beverly'</span>, <span class="hljs-string">'Riker'</span>, <span class="hljs-string">'Geordie'</span>, <span class="hljs-string">'Worf'</span>, <span class="hljs-string">'Data'</span>]
+turn = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> (turn &lt; <span class="hljs-number">42</span>) {
+  index = turn % players.length
+  player = players[index]
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'current player:'</span>, player)
+
+  turn++
+}
+</code></pre>
+<p><strong>Takeaway:</strong> You can always use an integer, an array, and the modulus
+operator to proceed through player's turns in an orderly fashion until a
+game is over. When you take the turn number "modulo" the length of the array
+you end up with a number sequence that cycles through indexes of the array.</p>
+<p>Here's an example using this modulus trick in a two player game, and a five
+player game. No matter how many players are in the game this trick will
+always work.</p>
+<p>(Well, technically there's one specific thing that could cause this trick to
+hiccup. Read more about <a href="http://localhost:8642/README.md">Integer Overflow</a>. Practically it would only
+happen if your game lasted many, many, many turns.)</p>
+<table>
+<thead>
+<tr>
+<th>Turn</th>
+<th>turn % 2</th>
+<th>Two Players</th>
+<th>turn % 5</th>
+<th>Five Players</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 % 2 == 0</td>
+<td>Alice</td>
+<td>0 % 5 == 0</td>
+<td>Beverly</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 % 2 == 1</td>
+<td>Bob</td>
+<td>1 % 5 == 1</td>
+<td>Riker</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2 % 2 == 0</td>
+<td>Alice</td>
+<td>2 % 5 == 2</td>
+<td>Geordie</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3 % 2 == 1</td>
+<td>Bob</td>
+<td>3 % 5 == 3</td>
+<td>Worf</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4 % 2 == 0</td>
+<td>Alice</td>
+<td>4 % 5 == 4</td>
+<td>Data</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5 % 2 == 1</td>
+<td>Bob</td>
+<td>5 % 5 == 0</td>
+<td>Beverly</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6 % 2 == 0</td>
+<td>Alice</td>
+<td>6 % 5 == 1</td>
+<td>Riker</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7 % 2 == 1</td>
+<td>Bob</td>
+<td>7 % 5 == 2</td>
+<td>Geordie</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8 % 2 == 0</td>
+<td>Alice</td>
+<td>8 % 5 == 3</td>
+<td>Worf</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9 % 2 == 1</td>
+<td>Bob</td>
+<td>9 % 5 == 4</td>
+<td>Data</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10 % 2 == 0</td>
+<td>Alice</td>
+<td>10 % 5 == 0</td>
+<td>Beverly</td>
+</tr>
+<tr>
+<td>11</td>
+<td>11 % 2 == 1</td>
+<td>Bob</td>
+<td>11 % 5 == 1</td>
+<td>Riker</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12 % 2 == 0</td>
+<td>Alice</td>
+<td>12 % 5 == 2</td>
+<td>Geordie</td>
+</tr>
+<tr>
+<td>13</td>
+<td>13 % 2 == 1</td>
+<td>Bob</td>
+<td>13 % 5 == 3</td>
+<td>Worf</td>
+</tr>
+</tbody>
+</table>
+<p>Here's code for taking a turn of Tic Tac Toe. We'll look more at the
+<code>checkGameOver</code> next.</p>
+<pre><code class="hljs language-js">getCurrentPlayer() {
+  index = <span class="hljs-keyword">this</span>.turn % <span class="hljs-keyword">this</span>.players.length
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.players[index]
+}
+
+makeMove(row, col) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.isValidMove(row, col)) {
+    <span class="hljs-comment">// mark the board with the current player ("X" or "O")</span>
+    <span class="hljs-keyword">this</span>.board[row][col] = <span class="hljs-keyword">this</span>.getCurrentPlayer()
+    <span class="hljs-keyword">this</span>.turn++
+
+    <span class="hljs-comment">// check to see if the move ended the game</span>
+    <span class="hljs-keyword">this</span>.checkGameOver()
+  }
+}
+
+isValidMove(row, col) {
+  <span class="hljs-comment">// make sure indexes are legitimate array indexes within the grid</span>
+  <span class="hljs-keyword">if</span> (row &lt; <span class="hljs-number">0</span> || col &lt; <span class="hljs-number">0</span> || row &gt;= <span class="hljs-number">3</span> || col &gt;= <span class="hljs-number">3</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  }
+
+  <span class="hljs-comment">// make sure the spot on the grid hasn't already been taken</span>
+  <span class="hljs-keyword">if</span> (board[row][col] !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+}
+</code></pre>
+<h2 id="checking-for-game-over">Checking For Game Over</h2>
+<p>OK, now we've got a class set up to represent the whole Tic Tac Toe game. The
+class uses a two-dimensional array to represent the board. It's got methods
+that allow players to make moves, it increments through play turns smoothly,
+and makes sure players only play legitimate moves. Let's figure out when this
+thing ends!</p>
+<p>When does Tic Tac Toe end?</p>
+<ul>
+<li>A player wins when that player gets three in a row. Players tie when the</li>
+<li>board fills up without either player scoring three-in-a-row and with nowhere
+else to play.</li>
+</ul>
+<p>I apologize for having explained end-game conditions for Tic Tac Toe. If
+you've seriously never played Tic Tac Toe, welcome to the game!</p>
+<p>The actual annoying part about checking for three-in-a-row is writing the
+code to do it. Let's use what we know about for-loops and arrays to write
+code that checks for wins. After we look at using for-loops to check for
+these win conditions I want to show off one simpler approach too.</p>
+<h3 id="traversing-arrays">Traversing Arrays</h3>
+<p>Three in a row can occur in three (or four?) different patterns.</p>
+<ol>
+<li>From left to right across a row (on the top, middle, or bottom rows)</li>
+<li>From top to bottom along a column (along the left, middle, or right columns)</li>
+<li>From top-left to bottom-right in a diagonal</li>
+<li>From bottom-left to top-right in a diagonal</li>
+</ol>
+<p>The row and column patterns occur three times so it makes sense to write
+for-loops to try to capture some of the redundancy.</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// check each row for three-in-a-row across</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; board.length; row++) {
+  <span class="hljs-keyword">let</span> isNotNull = board[row][<span class="hljs-number">0</span>] !== <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> threeInARow = board[row][<span class="hljs-number">0</span>] === board[row][<span class="hljs-number">1</span>] &amp;&amp; board[row][<span class="hljs-number">1</span>] === board[row][<span class="hljs-number">2</span>]
+
+  <span class="hljs-keyword">if</span> (isNotNull &amp;&amp; threeInARow) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+}
+
+<span class="hljs-comment">// check each column for three-in-a-row down</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> col = <span class="hljs-number">0</span>; col &lt; <span class="hljs-number">3</span>; col++) {
+  <span class="hljs-keyword">let</span> isNotNull = board[<span class="hljs-number">0</span>][col] !== <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> threeInARow = board[<span class="hljs-number">0</span>][col] === board[<span class="hljs-number">1</span>][col] &amp;&amp; board[<span class="hljs-number">1</span>][col] === board[<span class="hljs-number">2</span>][col]
+
+  <span class="hljs-keyword">if</span> (isNotNull &amp;&amp; threeInARow) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p>Ah, but there's redundant logic inside the for-loops! It's annoying to have
+to write the same code inside the two for-loops twice. We can write a function
+to capture this logic.</p>
+<p>Read more about <a href="http://localhost:8642/README.md">Reducing Redundant Redundancy</a> and why it can be a great thing.</p>
+<p>This function checks three spots on the board and returns <code>true</code> or <code>false</code>
+if all the spots match each other, and they are not <code>null</code>.</p>
+<pre><code class="hljs language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkThree</span>(<span class="hljs-params">row1, col1, row2, col2, row3, col3</span>) </span>{
+  <span class="hljs-keyword">let</span> isNotNull = board[row1][col1] !== <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> threeInARow = board[row1][col1] === board[row2][col2] &amp;&amp; board[row2][col2] === board[row3][col3]
+
+  <span class="hljs-keyword">if</span> (isNotNull &amp;&amp; threeInARow) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h2 id="false-optimization">False Optimization</h2>
+<p>An astute reader will notice that the <code>checkThree</code> function above can be
+"optimized," specifically around condensing the if-statement that takes up
+four whole lines.</p>
+<pre><code class="hljs language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkThree</span>(<span class="hljs-params">row1, col1, row2, col2, row3, col3</span>) </span>{
+  <span class="hljs-keyword">let</span> isNotNull = board[row1][col1] !== <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> threeInARow = board[row1][col1] === board[row2][col2] &amp;&amp; board[row2][col2] === board[row3][col3]
+  <span class="hljs-keyword">return</span> isNotNull &amp;&amp; threeInARow
+}
+</code></pre>
+<p>The astute reader will realize the code can be "optimized" even further.</p>
+<pre><code class="hljs language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkThree</span>(<span class="hljs-params">a,b,c,d,e,f</span>) </span>{
+  <span class="hljs-keyword">return</span> board[a][b] !== <span class="hljs-literal">null</span> &amp;&amp; board[a][b] === board[c][d] &amp;&amp; board[c][d] === board[e][f]
+}
+</code></pre>
+<p>This reader is a dolt, a coward, they are missing the forest for the trees,
+seeing a finger for the moon, and prioritizing having less lines-of-code over
+striving for clarity, investigatibility, and maintainability. This is a false
+optimization, a bad habit, and no one wants to talk to these people at
+parties.</p>
+<p>Basically squishing code together like this just makes things harder to
+understand and much harder to debug and log and interact with in the future.</p>
+<p>Spreading code out across multiple lines (especially the hard-coded <code>true</code>
+and <code>false</code> individual return statements) make it easy to observe what path
+your program takes if you watch it execute it line-by-line with a debugger.</p>
+<p>Saving boolean values into variables like <code>isNotNull</code> and <code>threeInARow</code> is a
+great way simply to describe what logic check your performing. The next
+person that reads the code (especially future-you) can quickly see what
+you're trying to determine just by the name of the variable. Good debuggers
+will let you see the value of the variable too, so it's nice to be able to
+pause the program and see the result of those logics.</p>
+<p>You're probably going to extend the program in the future and rewrite this code anyway.
+Breaking code across many variable and across many lines will give you more
+"contact points" in the future. More places to "hook up wires" or "weld stuff
+on."</p>
+<p>Read more about <a href="http://localhost:8642/README.md">One-Liners Suck</a></p>
+<p>And another one thing!! Tiny variable names are absolutely terrible. Imagine
+searching through a code-base to see everywhere a variable, or a function is
+called. If you named something <code>a</code> you're going to get a lot of useless
+search results like "banana," "banana," "banana," "bandanna," "bandanna,"
+"bandanna," "let a = 78", "search," and so on.</p>
+<h3 id="a-simpler-solution">A Simpler Solution</h3>
+<pre><code class="hljs language-js"><span class="hljs-comment">// check each row for three-in-a-row across</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; board.length; row++) {
+  <span class="hljs-keyword">if</span> (checkThree(row, <span class="hljs-number">0</span>, row, <span class="hljs-number">1</span>, row, <span class="hljs-number">2</span>)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+}
+
+<span class="hljs-comment">// check each column for three-in-a-row down</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> col = <span class="hljs-number">0</span>; col &lt; <span class="hljs-number">3</span>; col++) {
+  <span class="hljs-keyword">if</span> (checkThree(<span class="hljs-number">0</span>, col, <span class="hljs-number">1</span>, col, <span class="hljs-number">2</span>, col)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+}
+
+<span class="hljs-comment">// check diaganols</span>
+<span class="hljs-comment">// top-left to bottom-right</span>
+<span class="hljs-keyword">if</span> (checkThree(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)) {
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+}
+
+<span class="hljs-comment">// bottom-left to top-right</span>
+<span class="hljs-keyword">if</span> (checkThree(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>)) {
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+}
+
+<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h2 id="a-more-complex-simple-solution">A More Complex Simple Solution</h2>
+<p>OK, there's one more variation on this game that I personally like. Instead
+of using the two for loops and checking for the diagonals all separately
+we'll store all our line information the same way. The two for loops for the
+horizontal lines and the vertical lines are not that big of a win.</p>
+<p>Hard-code an array listing each of the potential three-in-a-row lines with
+the row/column information for each space in the line. Tic-Tac-Toe is a small
+enough game that I think it's OK to get away with this.</p>
+<p>We'll look at more complicated grid-assessments when we look at Connect Four in
+the next game.</p>
+<pre><code class="hljs language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasWinner</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> lines = [
+    <span class="hljs-comment">// horizontal lines </span>
+    [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>],
+    [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
+    [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>],
+
+    <span class="hljs-comment">// vertical lines</span>
+    [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>],
+    [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>],
+    [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>]
+
+    <span class="hljs-comment">// top-left to bottom-right</span>
+    [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>],
+
+    <span class="hljs-comment">// bottom-left to top-right</span>
+    [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>]
+  ]
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; lines.length; i++) {
+    <span class="hljs-keyword">let</span> line = lines[i]
+    <span class="hljs-keyword">if</span> (checkThree(line[<span class="hljs-number">0</span>], line[<span class="hljs-number">1</span>], line[<span class="hljs-number">2</span>], line[<span class="hljs-number">3</span>], line[<span class="hljs-number">4</span>], line[<span class="hljs-number">5</span>])) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    }
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+}
+</code></pre>
+
+<footer><sup><hr> Served by <a href="https://www.npmjs.com/package/markserv">MarkServ</a> | PID: 8392</sup></footer>
+</article>
+
+</body></html>
