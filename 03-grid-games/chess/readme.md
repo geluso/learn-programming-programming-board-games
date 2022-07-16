@@ -191,3 +191,276 @@ function makeMoveByIndex(board, startRow, startCol, endRow, endCol) {
     board[endRow][endCol] = startPiece;
 }
 ```
+
+## Validating Moves
+Making moves is easy. The more challenging part of programming chess is
+enforcing the game such that the player can only play legitimate moves!
+
+Each piece in chess moves in its own way. Let's enumerate how each piece moves
+and make a note of unique aspects about how that piece moves differently than
+other pieces. This analysis will allow us to gain a sense of what sort of things
+we'll need to program.
+
+Which piece do you think is going to be the easiest to program?  We will
+immediately see that simple-seeming pieces have unexpected complexities!
+
+* Pawns only move forward one space
+    * But they can move forward two spaces on their first turn
+    * And they attack diagonally, a different direction than how they regularly move
+    * And they have a special move called "en passant" that only occurs in a special circumstance
+    * And they have a special ability where they promote and turn into another piece if they reach the
+      other side of the board
+* Bishops move and attack diagonally
+* Rooks move and attack orthogonally
+* Queens move and attack diagonally or orthogonally
+* Kings move any one square diagonally or orthogonally
+    * The king may not move to a space where it is under attack.
+    * The king must move to a free space if it is currently under attack.
+* Knights move and attack in a specific pattern
+    * The pattern is not in a straight line like attacking diagonally or orthogonally.
+    * Their movement is uninhibited by pieces between their start square and end square.
+
+In order to not bury the headline here are some concepts we'll have to program
+to meet the requirements of making moves for all of the pieces:
+
+* Since pieces move along a line until they're blocked by another piece we'll
+  need to program something that collects a set of legitimate squares up to and
+  including the impeding square.
+* We'll need to program something that accounts for the fact that pawns, unlike
+  any other piece, attack in a different direction than they move.
+* We'll need to program something that collects and combines legitimate squares
+  starting from one square and looking in multiple directions.
+* We'll need to program something that makes certain pieces aware of the history
+  of the game so pawns only move forward two squares once, to support the special
+  circumstance of en passant, to make sure kings only castle once per game and to
+  prevent kings from castling after either a king or rook have moved.
+* We'll need to program something that collects all the squares enemy pieces are
+  threatening to attack to prevent the king from moving to a threatened square.
+* We'll need to handle a special post-move circumstance to support pawns promoting
+  into other pieces after reaching the final rank.
+
+If you guessed pawns would be the easy piece to program you may have been
+surprised! The simple one-square-moving piece has a lot of exceptional cases!
+
+Bishops, Rooks, and Queens are relatively easy to program but we'll need to
+account for the fact that their movement is inhibited when other pieces are in
+their way.  For example, although a Queen has the range to move in any direction
+all across the board the Queen has zero legitimate moves at the beginning of the
+game because the Queen is surrounded in every direction!
+
+The King seems simple to program moves for since the king only moves one square
+in any direction at a time. But the fact that the king may not move into a square
+where another piece can attack means that properly programming the king relies on
+properly programming the attacks of every other piece first!
+
+In the end Knights are the easier piece to program. They move according to a
+pattern that is ultimately a fixed number of positions around the piece and
+those positions are completely unaffected by pieces between the knight and their
+destination. Nothing ever gers in the way of a knight. The only place a knight
+can't legally move is off the board.
+
+Let's begin validating piece movement starting by programming to make sure it is
+illegal to move pieces off the board.
+
+```js
+function isValidIndex(board, row, col) {
+    if (row < 0 || col < 0) {
+        return false;
+    }
+
+    if (row >= board.length) {
+        return false;
+    }
+
+    if (row[col] >= board[row].length) {
+        return false;
+    }
+
+    return true;
+}
+```
+
+Now we can update `makeMoveByIndex` to check for valid positions using `isValidIndex`.
+
+```js
+function makeMoveByIndex(board, startRow, startCol, endRow, endCol) {
+    if (isValidIndex(board, startRow, startCol)) {
+        return false;
+    }
+
+    if (isValidIndex(board, endRow, endCol)) {
+        return false;
+    }
+
+    let startPiece = board[startRow][startCol];
+    let endPiece = board[endRow][endCol];
+
+    board[startRow][startCol] = null;
+    board[endRow][endCol] = startPiece;
+
+    return false;
+}
+```
+
+## Gathering All Possible Movement
+Bishops, Rooks and Queens all move rather similarly. They move in a straight
+line in one direction until another piece impedes their movement in which case
+the moving piece either stops if the other piece is friendly, or the moving
+piece captures another piece and lands on the square.
+
+Let's start with Rook moves and program a function that starts at one square and
+finds all the valid moves up, down, left and right from one piece. The function
+will return a list of every valid move.
+
+```js
+function rookMoves(board, startRow, startCol) {
+    let moves = [];
+
+    // up
+    let row = startRow;
+    let col = startCol;
+    let isBlocked = false;
+    while (!blocked && row >= 0) {
+        row -= 1;
+        if (!isValidIndex(board, row, col)) {
+            isBlocked = true;
+        } else {
+            let piece = board[row][col];
+            if (piece.color === board[startRow][startCol]) {
+                isBlocked = true;
+            } else {
+                moves.push({row, col});
+            }
+        }
+    }
+
+    // down
+    let row = startRow;
+    let col = startCol;
+    let isBlocked = false;
+    while (!blocked && row >= 0) {
+        row += 1;
+        if (!isValidIndex(board, row, col)) {
+            isBlocked = true;
+        } else {
+            let piece = board[row][col];
+            if (piece.color === board[startRow][startCol]) {
+                isBlocked = true;
+            } else {
+                moves.push({row, col});
+            }
+        }
+    }
+
+    // left
+    let row = startRow;
+    let col = startCol;
+    let isBlocked = false;
+    while (!blocked && row >= 0) {
+        col -= 1;
+        if (!isValidIndex(board, row, col)) {
+            isBlocked = true;
+        } else {
+            let piece = board[row][col];
+            if (piece.color === board[startRow][startCol]) {
+                isBlocked = true;
+            } else {
+                moves.push({row, col});
+            }
+        }
+    }
+
+    // right
+    let row = startRow;
+    let col = startCol;
+    let isBlocked = false;
+    while (!blocked && row >= 0) {
+        col += 1;
+        if (!isValidIndex(board, row, col)) {
+            isBlocked = true;
+        } else {
+            let piece = board[row][col];
+            if (piece.color === board[startRow][startCol]) {
+                isBlocked = true;
+            } else {
+                moves.push({row, col});
+            }
+        }
+    }
+
+
+    return moves;
+}
+```
+
+Writing those four while loops is redundant! Plus that's only written in one
+piece for the Rook so far.  We would have to write that four more times to
+account for the diagonals for a bishop, and eight times for each direction the
+queen moves in.
+
+We can take one step away from redundancy and make a function that starts at a
+square and gathers valid movement spaces in one direction. Then we can combine
+all of these valid movements together into one large list of valid movements.
+
+Take a look at this level of reducing redundancy then we'll see how we can
+reduce redundancy ever further by making the directions even more abstract and
+really sharing this code between pieces.
+
+```js
+function movementSquares(board, startRow, startCol) {
+    // search for moves in every direction
+    const up = getSquaresInDirection(board, startRow, startCol, -1, 0);
+    const down = getSquaresInDirection(board, startRow, startCol, 1, 0);
+    const left = getSquaresInDirection(board, startRow, startCol, 0, -1);
+    const right = getSquaresInDirection(board, startRow, startCol, 0, 1);
+    return [...up, ...down, ...left, ...right];
+}
+
+function getSquaresInDirection(board, startRow, startCol, rowDirection, colDirection) {
+    // create an array to collect all moves in this direction
+    let moves = [];
+
+    let steps = 0;
+    let isSearching = true;
+    while (isSearching) {
+        steps++;
+
+        let row = startRow + steps * rowDirection;
+        let col = startCol + steps * colDirection;
+
+        // stepped off the board
+        if (!isValidIndex(row, col)) {
+            isSearching = false;
+        }
+
+        // if the piece on this square is the same color as the starting piece
+        // then the square is not added because we are blocked by our own piece
+        let piece = board[row][col]
+        if (piece.color !== board[startRow][startCol].color) {
+            isSearching = false
+        }
+
+        moves.push({row, col});
+
+        // stop searching if the row contained an enemy piece because the
+        // furthest a piece can move is capturing that piece.
+        if (piece !== null) {
+            isSearching = false
+        }
+    }
+    return moves;
+}
+
+```
+
+If the piece is their own color they stop in front of it. If the piece is
+another color they capture the piece, take that piece off the board and land on
+that piece's space.
+
+
+
+
+Let's program tools that gather all the valid movements for a piece. We want to
+reuse these tools between pieces. I imagine one tool will check for valid
+movements in one direction, then a second tool will combine the movements from
+all directions into one set of valid moves. We can also
