@@ -326,7 +326,7 @@ function rookMoves(board, startRow, startCol) {
             isBlocked = true;
         } else {
             let piece = board[row][col];
-            if (piece.color === board[startRow][startCol]) {
+            if (piece.color === board[startRow][startCol].color) {
                 isBlocked = true;
             } else {
                 moves.push({row, col});
@@ -344,7 +344,7 @@ function rookMoves(board, startRow, startCol) {
             isBlocked = true;
         } else {
             let piece = board[row][col];
-            if (piece.color === board[startRow][startCol]) {
+            if (piece.color === board[startRow][startCol].color) {
                 isBlocked = true;
             } else {
                 moves.push({row, col});
@@ -362,7 +362,7 @@ function rookMoves(board, startRow, startCol) {
             isBlocked = true;
         } else {
             let piece = board[row][col];
-            if (piece.color === board[startRow][startCol]) {
+            if (piece.color === board[startRow][startCol].color) {
                 isBlocked = true;
             } else {
                 moves.push({row, col});
@@ -380,7 +380,7 @@ function rookMoves(board, startRow, startCol) {
             isBlocked = true;
         } else {
             let piece = board[row][col];
-            if (piece.color === board[startRow][startCol]) {
+            if (piece.color === board[startRow][startCol].color) {
                 isBlocked = true;
             } else {
                 moves.push({row, col});
