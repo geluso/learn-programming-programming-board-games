@@ -11,31 +11,33 @@ The idea of this book is to take what you already know about board games
 and see how to convert your understanding of how those games work into
 interactive programs.
 
-The book is written for people reading with any level of programming
-experience. If you have zero, this book starts from there! If you have some
-programming experience, pick up where you feel comfortable. Flip back if you
-feel like you missed something. Flip around if you're just interested in
-specific stuff.
+The book is written for people with any level of programming experience. If you
+have zero programming experience, this book starts from the beginning! If you
+have some programming experience, pick up where you feel comfortable. If you
+have a lot of programming experience perhaps you'll enjoy reading about design
+choices implementing different board games. Many games offer surprising
+complexities that are fun to examine. Flip back if you feel like you missed
+something. Flip around when you're interested in specific stuff.
 
 We'll start introducing fundamental programming concepts and building simple
 games. Then we'll learn more concepts and build more complex games. The games
 we'll be building are broken into these broad categories:
 
-* **Simple Games:** Guess My Number, Rock Paper Scissors, Hangman, Tic Tac Toe,
-  Connect Four
-* **Card Games:** War, Blackjack, Thirteen, Poker, Hearts, Cribbage
-* **Grid Games:** Othello, Checkers, Chess, Go, Chinese Checkers
-* **Classic Games:** Monopoly, Chutes and Ladders, Risk, The Game of Life
+* **Simple Games:** Guess My Number, Rock Paper Scissors, Hangman, Tic Tac Toe, Connect Four 
+* **Card Games:** War, Blackjack, Poker, Horse Race, Thirteen, Hearts, Cribbage, Euchre
+* **Grid Games:** Battleship, Othello, Checkers, Chess, Go, Chinese Checkers
+* **Classic Games:** Sorry, Chutes and Ladders, Risk, Scrabble, Boggle, Monopoly, The Game of Life
 * **Modern Games:** Settlers of Catan, Carcassonne, Dominion, Powerboats
 
 I've arranged the games to coincide with a good order of programming concepts.
 There's enough complexity and diversity in these games to cover A LOT of
 programming topics. Here's some of what we'll cover:
 
-* Data (text, numbers, lists, objects)
-* if-statements
-* for-loops, while-loops
-* Variables, functions, parameters, return values
+* Print statements!
+* Variables and primitive data types (numbers, lists, text, objects)
+* If-statements
+* For-loops, while-loops
+* Functions, parameters, return values
 * Classes, object-oriented programming, encapsulation, abstraction
 * Unit testing, file input / output
 * Data structures: arrays, lists, linked lists, stacks, queues, maps, hash
